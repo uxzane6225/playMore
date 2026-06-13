@@ -2,11 +2,11 @@
 session_start();
 require('../config/database.php');
 
-$_SESSION['title'] = "Welcome Page";
+$_SESSION['title'] = "Welcome";
 
-include('templates/header.php');
+include('templates/head.php');
 ?>
-<header class="h-full flex flex-col items-center justify-center gap-5 text-center bg-red-500 text-white shadow-xl lg:h-3/4 lg:flex-row lg:justify-evenly">
+<header class="h-full flex flex-col items-center justify-center gap-5 text-center bg-red-600 text-white shadow-xl lg:h-3/4 lg:flex-row lg:justify-evenly">
     <div class="flex flex-col items-center justify-cente gap-5">
         <div>
             <h1 class="font-bold text-3xl">playMore.com!</h1>
@@ -20,12 +20,13 @@ include('templates/header.php');
     <img src="../resources/images/header.jpg" alt="Header Toy" class="w-96 h-96 hidden rounded-lg transition duration-300 shadow-xl hover:scale-110 lg:block">
 </header>
 <main class="py-10 w-full flex flex-col items-center">
-    <header class="w-3/6 flex flex-col gap-5">
+    <header class="w-3/4 flex flex-col gap-5 lg:w-3/6">
         <h2 class="text-center text-3xl font-medium">About</h2>
-        <p class="text-justify">playMore is a toy store for everyone! We sell brand new toys for children and vintage toys for collectors. We believe that everyone should enjoy owning and playing toys regardless of everything!  </p>
+        <p>playMore is a toy store for everyone! We sell brand new and vintage toys for both children and adults, it doesn't matter if you're going to be playing with it or collecting toys, because We believe that everyone should enjoy owning and playing toys regardless of everything!</p>
+        
     </header>
 </main>
-<footer class="p-5 bg-red-500 text-white">
+<footer class="p-5 bg-red-600 text-white">
     <p><span class="font-bold">&copy;</span> Uriel Laurence M. Mendoza | 2nd Year - 3rd Trimester | ITWS Finals Project</p>
 </footer>
-<?php include('templates/footer.php'); ?>
+<?php include('templates/foot.php'); ?>
