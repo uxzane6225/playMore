@@ -7,7 +7,7 @@ $_SESSION['title'] = "Login";
 include('templates/head.php');
 ?>
 <main class="h-screen flex">
-    <form action="../processors/auth/auth.php" method="POST" class="w-full flex flex-col items-center justify-evenly text-white bg-red-600 lg:w-3/6">
+    <form action="../processors/auth/loginAuth.php" method="POST" class="w-full flex flex-col items-center justify-evenly text-white bg-red-600 lg:w-3/6">
         
         <h2 class="hidden text-3xl font-bold lg:text-4xl md:block">Login</h2>    
         <header class="text-center md:hidden">
@@ -18,14 +18,28 @@ include('templates/head.php');
         <div class="px-10 w-full flex flex-col gap-3 text-xl">
             <div class="flex flex-col gap-1">
                 <label for="email" class="pl-2">Email Address</label>
-                <input type="email" id="email" name="email" class="p-1.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" autocomplete="email"" required>
+                <input type="email" id="email" name="email" value="<?= isset($_SESSION['oldEmail']) ? $_SESSION['oldEmail'] : ''; unset($_SESSION['oldEmail']);?>" class="p-1.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" autocomplete="email" >
+                <?php if(isset($_SESSION['emailError'])): ?>
+                    <p class="text-end text-xs"><?= $_SESSION['emailError']; ?></p>
+                    <?php unset($_SESSION['emailError']); ?>
+                <?php endif; ?>
             </div>
             <div class="flex flex-col gap-1">
                 <label for="password" class="pl-2">Password</label>
-                <input type="password" id="password" name="password" class="p-1.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" autocomplete="current-password" required>
-                <label for="showPassword" class="pl-2 text-lg flex items-center gap-2"><input type="checkbox" id="showPassword" name="showPassword" class="w-4 h-4 rounded-lg cursor-pointer"> Show Password?</label>
+                <input type="password" id="password" name="password" class="p-1.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" autocomplete="current-password" >
+                <div class="flex items-center justify-between">
+                    <label for="show" class="pl-2 text-lg flex items-center gap-2"><input type="checkbox" id="show" name="show" class="w-4 h-4 rounded-lg cursor-pointer"> Show Password?</label>
+                    <?php if(isset($_SESSION['passError'])): ?>
+                        <p class="text-end text-xs"><?= $_SESSION['passError']; ?></p>
+                        <?php unset($_SESSION['passError']); ?>
+                    <?php endif; ?>
+                </div>
             </div>
         </div>
+        <?php if(isset($_SESSION['error'])): ?>
+            <p class="text-center"><?= $_SESSION['error'] ?></p>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
         <div class="flex flex-col items-center gap-1">
             <button type="submit" name="login" class="py-2 px-5 w-fit bg-white text-black text-xl rounded-lg transition duration-300 hover:bg-gray-100">Sign In</button>
             <a href="registerPage.php" class="text-md underline lg:text-sm">Dont have an account? Register!</a>
@@ -37,5 +51,6 @@ include('templates/head.php');
             <p class="text-lg">Play more than you could imagine!</p>
         </div>
     </div>
-</main>                         
+</main>
+<script src="../scripts/loginScript.js"></script>                     
 <?php include('templates/foot.php'); ?>

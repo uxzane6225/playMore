@@ -12,4 +12,4 @@
     <link rel="icon" href="../../resources/images/playMoreLogo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen flex">
+<body class="h-screen lg:grid lg:grid-cols-5">
