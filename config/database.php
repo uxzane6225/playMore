@@ -1,17 +1,20 @@
 <?php
 $host = "localhost";
-$port = 3307;
+$port = 3308;
 $user = "root";
 $pass = "";
-$dbname = "playMore";
+$dbname = "playmoredb";
 
-$dsn = "mysql:host=$host;port:$port;dbname=$dbname;charset=utf-8";
+$dsn = "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8";
 
 try {
     $pdo = new PDO($dsn, $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 }
 catch (PDOException $e) {
-    header("Location: errorPage.php");
+    session_start();
+    error_log($e->getMessage());
+    $_SESSION['error'] = "Error: " . $e->getMessage();
+    header("Location: ../pages/errorPage.php");
     exit;
 }
