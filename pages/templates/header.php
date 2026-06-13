@@ -9,6 +9,7 @@
         <?php endif; ?>
         playMore.com
     </title>
+    <link rel="icon" href="../../resources/images/playMoreLogo.png">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-screen">

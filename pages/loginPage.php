@@ -34,5 +34,5 @@ include('templates/header.php');
             <p class="text-lg">Play more than you could imagine!</p>
         </div>
     </div>
-</main>
+</main>                         
 <?php include('templates/footer.php'); ?>

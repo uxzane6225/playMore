@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$_SESSION['title'] = "Error Page"
+$_SESSION['title'] = "Error Page";
 
 include('templates/header.php');
 
