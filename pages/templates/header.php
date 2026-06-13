@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>playMore.com</title>
+    <title>
+        <?php if(isset($_SESSION['title'])): ?>
+            <?= $_SESSION['title']; ?> |
+        <?php endif; ?>
+        playMore.com
+    </title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="h-screen">

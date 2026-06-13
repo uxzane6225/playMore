@@ -1,8 +1,8 @@
 <?php
-    require('config/database.php');
+require('config/database.php');
 
-    if ($pdo) {
-        header("Location: pages/welcomePage.php");
-        exit;
-    }
+if ($pdo) {
+    header("Location: pages/welcomePage.php");
+    exit;
+}
 ?>

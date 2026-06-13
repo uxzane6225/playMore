@@ -1,5 +1,7 @@
 <?php 
 session_start();
+$_SESSION['title'] = "Error Page"
+
 include('templates/header.php');
 
 if (empty($_SESSION['error'])) {
