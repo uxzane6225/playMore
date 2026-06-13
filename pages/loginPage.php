@@ -2,7 +2,7 @@
 session_start();
 require('../config/database.php');
 
-$_SESSION['title'] = "Welcome Page";
+$_SESSION['title'] = "Login Page";
 
 include('templates/header.php');
 ?>
@@ -13,7 +13,7 @@ include('templates/header.php');
 
         <div class="px-10 w-full flex flex-col gap-3 text-xl">
             <div class="flex flex-col gap-1">
-                <label for="email" class="pl-2">Email</label>
+                <label for="email" class="pl-2">Email Address</label>
                 <input type="email" id="email" name="email" class="p-1.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" autocomplete="email"" required>
             </div>
             <div class="flex flex-col gap-1">
