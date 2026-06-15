@@ -4,7 +4,7 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $_SESSION['error'] = "You do not have the permission to execute this process.";
-    header("Location: ../../pages/createProfilePage.php");
+    header("Location: ../../pages/create-profile.php");
     exit;
 }
 
@@ -40,14 +40,11 @@ if (empty($birthdate)) {
     $_SESSION['birthError'] = "Birthdate is empty!";
     $hasError = true;
 }
-$_SESSION['error'] = "Before going through error!";
 
 if ($hasError) {
-    header("Location: ../../pages/createProfilePage.php");
+    header("Location: ../../pages/create-profile.php");
     exit;
 }
-
-$_SESSION['error'] = "I went through hasError seems to be no error!";
 
 try {
     $stmt = $pdo->prepare("INSERT INTO profiles (aid, username, bio, gender, birthdate) VALUES (:aid, :username, :bio, :gender, :birthdate)");
@@ -59,16 +56,16 @@ try {
         ":birthdate" => $birthdate,
     ]);
 
-    $_SESSION['user'] = $user;
+    $_SESSION['username'] = $user;
     $_SESSION['bio'] = $bio;
     $_SESSION['gender'] = $gender;
     $_SESSION['birthdate'] = $birthdate;
     
-    header("Location: ../../pages/dashboardPage.php");
+    header("Location: ../../pages/profile.php");
     exit;
 }
 catch (PDOException $e) {
     $_SESSION['error'] = $e->getMessage();
-    header("Location: ../../pages/createProfilePage.php");
+    header("Location: ../../pages/create-profile.php");
     exit;
 }

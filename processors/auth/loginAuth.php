@@ -4,7 +4,7 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $_SESSION['error'] = "You do not have the permission to execute this process.";
-    header("Location: ../../pages/loginPage.php");
+    header("Location: ../../pages/login.php");
     exit;
 }
 
@@ -26,7 +26,7 @@ if (empty($password)) {
 }
 
 if ($hasError) {
-    header("Location: ../../pages/loginPage.php");
+    header("Location: ../../pages/login.php");
     exit;
 }
 
@@ -36,14 +36,14 @@ try {
     $result = $check->fetch(PDO::FETCH_ASSOC);
 
     if (!$result) {
-        $_SESSINO['error'] = "Email doesn't exists!";
-        header("Location: ../../pages/loginPage.php");
+        $_SESSION['emailError'] = "Email doesn't exists!";
+        header("Location: ../../pages/login.php");
         exit;
     }
 
     if (!password_verify($password, $result['password'])) {
-        $_SESSINO['error'] = "Invalid password!";
-        header("Location: ../../pages/loginPage.php");
+        $_SESSION['passError'] = "Invalid password!";
+        header("Location: ../../pages/login.php");
         exit;
     }
 
@@ -60,11 +60,11 @@ try {
     $_SESSION['gender'] = $result['gender'];
     $_SESSION['birthdate'] = $result['birthdate'];
 
-    header("Location: ../../pages/dashboardPage.php");
+    header("Location: ../../pages/profile.php");
     exit;
 }
 catch (PDOException $e) {
     $_SESSION['error'] = $e->getMessage();
-    header("Location: ../../pages/loginPage.php");
+    header("Location: ../../pages/login.php");
     exit;
 }

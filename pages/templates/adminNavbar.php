@@ -15,7 +15,7 @@
             <div class="p-1 flex bg-white rounded-3xl gap-5">
                 <img src="../../resources/images/blankPfp.jpg" alt="profile picture" class="w-20 h-20 bg-gray-300 rounded-full">
                 <div class="w-full flex flex-col justify-center">
-                    <a href="" class="text-xl font-bold"><?= $_SESSION['username']; ?></a>
+                    <a href="profilePage.php" class="text-xl font-bold"><?= $_SESSION['username']; ?></a>
                     <p><?= $_SESSION['email'] ?></p>
                 </div>
             </div>

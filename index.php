@@ -2,7 +2,7 @@
 require('config/database.php');
 
 if ($pdo) {
-    header("Location: pages/welcomePage.php");
+    header("Location: pages/welcome.php");
     exit;
 }
 ?>

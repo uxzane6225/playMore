@@ -6,11 +6,9 @@ $_SESSION['title'] = "Create Profile";
 
 if (empty($_SESSION['aid'])) {
     $_SESSION['error'] = "You're not allowed to access the Create Profile Page, due to the lack of ID present";
-    header("Location: registerPage.php");
+    header("Location: register.php");
     exit;
 }
-
-echo $_SESSION['aid'];
 
 include('templates/head.php');
 ?>

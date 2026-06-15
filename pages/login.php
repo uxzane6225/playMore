@@ -42,7 +42,7 @@ include('templates/head.php');
         <?php endif; ?>
         <div class="flex flex-col items-center gap-1">
             <button type="submit" name="login" class="py-2 px-5 w-fit bg-white text-black text-xl rounded-lg transition duration-300 hover:bg-gray-100">Sign In</button>
-            <a href="registerPage.php" class="text-md underline lg:text-sm">Dont have an account? Register!</a>
+            <a href="register.php" class="text-md underline lg:text-sm">Dont have an account? Register!</a>
         </div>
     </form>
     <div class="hidden w-full bg-black md:block md:bg-[url(/../resources/images/authBG.jpg)] bg-center bg-cover">

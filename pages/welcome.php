@@ -13,8 +13,8 @@ include('templates/head.php');
             <p>Play more than you could imagine!</p>
         </div>
         <div class="flex items-center gap-5 text-2xl">
-            <a href="loginPage.php" class="py-1 px-3 text-black bg-white rounded-lg transition duration-300 hover:bg-gray-100">Login</a>
-            <a href="registerPage.php" class="transition duration-300 font-medium hover:text-gray-100">Register</a>
+            <a href="login.php" class="py-1 px-3 text-black bg-white rounded-lg transition duration-300 hover:bg-gray-100">Login</a>
+            <a href="register.php" class="transition duration-300 font-medium hover:text-gray-100">Register</a>
         </div>
     </div>
     <img src="../resources/images/header.jpg" alt="Header Toy" class="w-96 h-96 hidden rounded-lg transition duration-300 shadow-xl hover:scale-110 lg:block">

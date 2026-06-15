@@ -4,7 +4,7 @@ session_start();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     $_SESSION['error'] = "You do not have the permission to execute this process.";
-    header("Location: ../../pages/registerPage.php");
+    header("Location: ../../pages/register.php");
     exit;
 }
 
@@ -58,7 +58,7 @@ if ($password !== $confirm) {
 }
 
 if ($hasError) {
-    header("Location: ../../pages/registerPage.php");
+    header("Location: ../../pages/register.php");
     exit;
 }
 
@@ -70,7 +70,7 @@ try {
 
     if ($result) {
         $_SESSINO['error'] = "Email already exists!";
-        header("Location: ../../pages/registerPage.php");
+        header("Location: ../../pages/register.php");
         exit;
     }
     $hash = password_hash($password, PASSWORD_DEFAULT);
@@ -90,17 +90,17 @@ try {
     $_SESSION['phone'] = $phone;
     $_SESSION['address'] = $home;
 
-    $stmt = $pdo->prepare("SELECT role FROM accounts WHERE id = ?");
+    $stmt = $pdo->prepare("SELECT role FROM accounts WHERE aid = ?");
     $stmt->execute([$_SESSION['aid']]);
     $result = $stmt->fetch();
     
     $_SESSION['role'] = $result;
 
-    header("Location: ../../pages/createProfilePage.php");
+    header("Location: ../../pages/create-profile.php");
     exit;
 }
 catch (PDOException $e) {
     $_SESSION['error'] = $e->getMessage();
-    header("Location: ../../pages/registerPage.php");
+    header("Location: ../../pages/register.php");
     exit;
 }
