@@ -8,7 +8,7 @@
             <li><a href="contact.php" class="transition duration-300 hover:text-yellow-200">Contact</a></li>
             <li><a href="about.php" class="transition duration-300 hover:text-yellow-200">About</a></li>
             <a href="profile.php?id=<?= $_SESSION['aid'] ?>">Profile</a>
-            <?php if($_SESSION['role'] === "admin"): ?>
+            <?php if($_SESSION['role'] === "admin" || $_SESSION['role'] === 'staff'): ?>
                 <li><a href="dashboard.php" class="transition duration-300 hover:text-yellow-200">Control Panel</a></li>
             <?php endif; ?>
         </ul>

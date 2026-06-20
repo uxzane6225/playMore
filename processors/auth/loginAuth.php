@@ -32,7 +32,7 @@ if ($hasError) {
 }
 
 try {
-    $check = $pdo->prepare("SELECT * FROM accounts a INNER JOIN profiles p ON a.aid = p.aid WHERE email = :email");
+    $check = $pdo->prepare("SELECT * FROM accounts a WHERE email = :email");
     $check->execute([":email" => $email]);
     $result = $check->fetch(PDO::FETCH_ASSOC);
 
@@ -41,6 +41,10 @@ try {
         header("Location: ../../pages/login.php");
         exit;
     }
+
+    // $check = $pdo->prepare("SELECT * FROM accounts a INNER JOIN profiles p ON a.aid = p.aid WHERE email = :email");
+    // $check->execute([":email" => $email]);
+    // $result = $check->fetch(PDO::FETCH_ASSOC);
 
     if (!password_verify($password, $result['password'])) {
         $_SESSION['passError'] = "Invalid password!";
@@ -65,7 +69,11 @@ try {
         setcookie('remember_email', $email, time() + (84600 * 30), '/');
     }
     
-    
+    if (empty($result['username'])) {
+        header("Location: ../../pages/create-profile.php");
+        exit;
+    }
+
     $_SESSION['pfp'] = $result['pfp'];
     $_SESSION['username'] = $result['username'];
     $_SESSION['bio'] = $result['bio'];

@@ -7,7 +7,7 @@
         <ul class="p-3 h-full flex flex-col text-red-600">
             <a href="dashboard.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Dashboard</a>
             <a href="toys.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Toys</a>
-            <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Users</a>
+            <a href="users.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Users</a>
             <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Sales</a>
             <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Reports</a>
         </ul>
