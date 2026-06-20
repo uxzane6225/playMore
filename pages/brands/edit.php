@@ -3,7 +3,7 @@ require __DIR__ . '/../../processors/auth/auth.php';
 $_SESSION['title'] = "Edit Brand";
 
 include '../templates/adminHead.php';
-
+include '../templates/adminNavbar.php';
 $bid = $_GET['bid'] ?? 0;
 
 $stmt = $pdo->prepare("SELECT * FROM brands WHERE bid = ?");

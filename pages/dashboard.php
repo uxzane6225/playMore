@@ -1,6 +1,5 @@
 <?php 
 require __DIR__ . '/../processors/auth/auth.php';
-
 $_SESSION['title'] = "Dashboard";
 
 include('templates/adminHead.php');
@@ -8,7 +7,7 @@ include('templates/adminNavbar.php');
 
 $totalUsers = $pdo->query('SELECT COUNT(*) FROM accounts')->fetchColumn();
 $totalAdmin = $pdo->query('SELECT COUNT(*) FROM accounts WHERE role = "admin"')->fetchColumn();
-$totalEmployee = $pdo->query('SELECT COUNT(*) FROM accounts WHERE role = "employee"')->fetchColumn();
+$totalStaff = $pdo->query('SELECT COUNT(*) FROM accounts WHERE role = "staff"')->fetchColumn();
 $totalCustomer = $pdo->query('SELECT COUNT(*) FROM accounts WHERE role = "user"')->fetchColumn();
 
 $totalToys = $pdo->query('SELECT COUNT(*) FROM toys')->fetchColumn();
@@ -45,13 +44,13 @@ $totalTypes = $pdo->query('SELECT COUNT(*) FROM toytypes')->fetchColumn();
         </div>
 
         <div class="p-2 lg:px-10 h-fit w-fit text-white text-center bg-red-600 rounded-xl">
-            <h3 class="text-2xl font-bold"><?= $totalEmployee ?></h3>
+            <h3 class="text-2xl font-bold"><?= $totalAdmin ?></h3>
             <p>Number of Admins</p>
         </div>
 
         <div class="p-2 lg:px-10 h-fit w-fit text-white text-center bg-red-600 rounded-xl">
-            <h3 class="text-2xl font-bold"><?= $totalEmployee ?></h3>
-            <p>Number of Employees</p>
+            <h3 class="text-2xl font-bold"><?= $totalStaff ?></h3>
+            <p>Number of Staff</p>
         </div>
 
         <div class="p-2 lg:px-10 h-fit w-fit text-white text-center bg-red-600 rounded-xl">

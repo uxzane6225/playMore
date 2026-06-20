@@ -3,7 +3,7 @@ require __DIR__ . '/../../processors/auth/auth.php';
 $_SESSION['title'] = "Edit Category";
 
 include '../templates/adminHead.php';
-
+include '../templates/adminNavbar.php';
 $tcid = $_GET['tcid'] ?? 0;
 
 $stmt = $pdo->prepare("SELECT * FROM toycategories WHERE tcid = ?");

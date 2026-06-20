@@ -3,6 +3,7 @@ require __DIR__ . '/../../processors/auth/auth.php';
 $_SESSION['title'] = "Edit Toy Type";
 
 include '../templates/adminHead.php';
+include '../templates/adminNavbar.php';
 
 $ttid = $_GET['ttid'] ?? 0;
 

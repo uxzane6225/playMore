@@ -20,13 +20,14 @@ $_SESSION['last_activity'] = time();
 if (!isset($_SESSION['aid']) && isset($_COOKIE['remember_token'])) {
     $token = $_COOKIE['remember_token'];
 
-    $stmt = $pdo->prepare('SELECT * FROM accounts WHERE remember_token = ?');
+    $stmt = $pdo->prepare('SELECT * FROM accounts a INNER JOIN profiles p ON a.aid = p.aid WHERE remember_token = ?');
     $stmt->execute([$token]);
     $user = $stmt->fetch();
 
     if ($user) {
         $_SESSION['aid'] = $user['aid'];
         $_SESSION['fullname'] = $user['fullname'];
+        $_SESSION['username'] = $user['username'];
         $_SESSION['role'] = $user['role'];
         $_SESSION['last_activity'] = time();
     }
@@ -37,7 +38,7 @@ if (!isset($_SESSION['aid']) && isset($_COOKIE['remember_token'])) {
 
 function require_login() {
     if (!isset($_SESSION['aid'])) {
-        header("Location: " . BASE_URL . "login.php");
+        header("Location: " . BASE_URL . "pages/login.php");
         exit;
     }
 }

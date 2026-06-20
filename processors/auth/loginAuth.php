@@ -32,55 +32,65 @@ if ($hasError) {
 }
 
 try {
-    $check = $pdo->prepare("SELECT * FROM accounts a WHERE email = :email");
+    $check = $pdo->prepare("SELECT * FROM accounts WHERE email = :email");
     $check->execute([":email" => $email]);
-    $result = $check->fetch(PDO::FETCH_ASSOC);
+    $account = $check->fetch(PDO::FETCH_ASSOC);
 
-    if (!$result) {
+    if (!$account) {
         $_SESSION['emailError'] = "Email doesn't exists!";
         header("Location: ../../pages/login.php");
         exit;
     }
 
-    // $check = $pdo->prepare("SELECT * FROM accounts a INNER JOIN profiles p ON a.aid = p.aid WHERE email = :email");
-    // $check->execute([":email" => $email]);
-    // $result = $check->fetch(PDO::FETCH_ASSOC);
-
-    if (!password_verify($password, $result['password'])) {
+    if (!password_verify($password, $account['password'])) {
         $_SESSION['passError'] = "Invalid password!";
         header("Location: ../../pages/login.php");
         exit;
     }
 
-    $_SESSION['aid'] = $result['aid'];
-    $_SESSION['fullname'] = $result['fullname'];
-    $_SESSION['email'] = $result['email'];
+    $_SESSION['aid'] = $account['aid'];
+    $_SESSION['fullname'] = $account['fullname'];
+    $_SESSION['email'] = $account['email'];
     //$_SESSION['phone'] = $result['phone'];
     //$_SESSION['address'] = $result['address'];
-    $_SESSION['role'] = $result['role'];
+    $_SESSION['role'] = $account['role'];
 
     if ($remember) {
         $token = bin2hex(random_bytes(32));
 
-        $update = $pdo->prepare('UPDATE users SET remember_token = ? WHERE id = ?');
-        $update->execute([$token, $result['aid']]);
+        $update = $pdo->prepare('UPDATE accounts SET remember_token = ? WHERE aid = ?');
+        $update->execute([$token, $account['aid']]);
 
         setcookie('remember_token', $token, time() + (84600 * 30), "/", "", false, true);
         setcookie('remember_email', $email, time() + (84600 * 30), '/');
     }
+
+    $check = $pdo->prepare("SELECT * FROM profiles WHERE aid = :aid");
+    $check->execute([":aid" => $account['aid']]);
+    $profile = $check->fetch(PDO::FETCH_ASSOC);
     
-    if (empty($result['username'])) {
+    if (empty($profile['username'])) {
         header("Location: ../../pages/create-profile.php");
         exit;
     }
 
-    $_SESSION['pfp'] = $result['pfp'];
-    $_SESSION['username'] = $result['username'];
-    $_SESSION['bio'] = $result['bio'];
-    $_SESSION['gender'] = $result['gender'];
-    $_SESSION['birthdate'] = $result['birthdate'];
+    $_SESSION['pfp'] = $profile['pfp'];
+    $_SESSION['username'] = $profile['username'];
+    $_SESSION['bio'] = $profile['bio'];
+    $_SESSION['gender'] = $profile['gender'];
+    $_SESSION['birthdate'] = $profile['birthdate'];
 
-    header("Location: ../../pages/profile.php");
+    switch ($account['role']) {
+        case "admin":
+            header("Location: ../../pages/dashboard.php");    
+            break;
+        case "staff":
+            header("Location: ../../pages/dashboard.php");    
+            break;
+        default:
+            header("Location: ../../pages/profile.php");    
+    }
+   
     exit;
 }
 catch (PDOException $e) {
