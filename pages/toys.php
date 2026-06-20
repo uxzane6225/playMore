@@ -16,6 +16,7 @@ $toys = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <div class="h-full w-full bg-gray-200 overflow-scroll border border-b-4 rounded-t-2xl border-b-red-600">
         <table class="w-full">
             <thead class="text-white bg-red-700">
+                <th class="p-1 lg:p-3">ID</th>
                 <th class="p-1 lg:p-3">Name</th>
                 <th class="p-1 lg:p-3">Description</th>
                 <th class="p-1 lg:p-3">Brand</th>
@@ -32,6 +33,7 @@ $toys = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
                 <?php foreach($toys as $toy): ?>
                     <tr>
+                        <td><?= $toy['tid'] ?></td>
                         <td><?= htmlspecialchars($toy['name']) ?></td>
                         <td><?= htmlspecialchars($toy['description']) ?></td>
                         <td><?= htmlspecialchars($toy['bi']) ?></td>
