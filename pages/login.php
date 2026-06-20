@@ -1,10 +1,12 @@
 <?php 
-session_start();
-require('../config/database.php');
+require_once __DIR__ . '/../processors/auth/auth.php';
+require_guest();
+
+require_once __DIR__ . '/../config/database.php';
 
 $_SESSION['title'] = "Login";
 
-include('templates/head.php');
+include 'templates/head.php';
 ?>
 <main class="h-screen flex">
     <form action="../processors/auth/loginAuth.php" method="POST" class="w-full flex flex-col items-center justify-evenly text-white bg-red-600 lg:w-3/6">
@@ -18,17 +20,21 @@ include('templates/head.php');
         <div class="px-10 w-full flex flex-col gap-3 text-xl">
             <div class="flex flex-col gap-1">
                 <label for="email" class="pl-2">Email Address</label>
-                <input type="email" id="email" name="email" value="<?= isset($_SESSION['oldEmail']) ? $_SESSION['oldEmail'] : ''; unset($_SESSION['oldEmail']);?>" class="p-1.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" autocomplete="email" >
+                <input type="email" id="email" name="email" value="<?= isset($_SESSION['oldEmail']) ? $_SESSION['oldEmail'] : ''; unset($_SESSION['oldEmail']);?>" class="p-2.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" autocomplete="email" >
                 <?php if(isset($_SESSION['emailError'])): ?>
                     <p class="text-end text-xs"><?= $_SESSION['emailError']; ?></p>
                     <?php unset($_SESSION['emailError']); ?>
                 <?php endif; ?>
             </div>
+
             <div class="flex flex-col gap-1">
                 <label for="password" class="pl-2">Password</label>
-                <input type="password" id="password" name="password" class="p-1.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" autocomplete="current-password" >
+                <div class="p-1.5 flex gap-2 bg-white rounded-lg border lg:border-gray-400">
+                    <input type="password" id="password" name="password" class="w-full text-black lg:focus:outline-red-400" autocomplete="current-password">
+                    <button type="button" id="show" name="show" class="p-1 bg-red-600 rounded-lg">Show</button>
+                </div>
                 <div class="flex items-center justify-between">
-                    <label for="show" class="pl-2 text-lg flex items-center gap-2"><input type="checkbox" id="show" name="show" class="w-4 h-4 rounded-lg cursor-pointer"> Show Password?</label>
+                    <label for="show" class="pl-2 text-lg flex items-center gap-2"><input type="checkbox" id="remember" name="remember" class="w-4 h-4 rounded-lg cursor-pointer"> Remember Me</label>
                     <?php if(isset($_SESSION['passError'])): ?>
                         <p class="text-end text-xs"><?= $_SESSION['passError']; ?></p>
                         <?php unset($_SESSION['passError']); ?>

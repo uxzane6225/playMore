@@ -10,6 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $email = trim($_POST['email']);
 $password = trim($_POST['password']);
+$remember = $_POST['remember'];
 
 $hasError = false;
 
@@ -50,9 +51,20 @@ try {
     $_SESSION['aid'] = $result['aid'];
     $_SESSION['fullname'] = $result['fullname'];
     $_SESSION['email'] = $result['email'];
-    $_SESSION['phone'] = $result['phone'];
-    $_SESSION['address'] = $result['address'];
+    //$_SESSION['phone'] = $result['phone'];
+    //$_SESSION['address'] = $result['address'];
     $_SESSION['role'] = $result['role'];
+
+    if ($remember) {
+        $token = bin2hex(random_bytes(32));
+
+        $update = $pdo->prepare('UPDATE users SET remember_token = ? WHERE id = ?');
+        $update->execute([$token, $result['aid']]);
+
+        setcookie('remember_token', $token, time() + (84600 * 30), "/", "", false, true);
+        setcookie('remember_email', $email, time() + (84600 * 30), '/');
+    }
+    
     
     $_SESSION['pfp'] = $result['pfp'];
     $_SESSION['username'] = $result['username'];

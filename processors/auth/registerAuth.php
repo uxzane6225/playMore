@@ -73,6 +73,7 @@ try {
         header("Location: ../../pages/register.php");
         exit;
     }
+    
     $hash = password_hash($password, PASSWORD_DEFAULT);
 
     $stmt = $pdo->prepare("INSERT INTO accounts (fullname, email, phone, address, password) VALUES (:fullname, :email, :phone, :address, :password)");

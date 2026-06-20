@@ -1,8 +1,7 @@
 <?php 
-session_start();
-require('../config/database.php');
+require __DIR__ . '/../processors/auth/auth.php';
 
-$_SESSION['title'] = "Welcome";
+$_SESSION['title'] = "Dashboard";
 
 include('templates/adminHead.php');
 include('templates/adminNavbar.php');

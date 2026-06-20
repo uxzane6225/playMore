@@ -5,8 +5,8 @@
             <h1 class="m-3 p-3 text-xl font-bold text-red-600 bg-white rounded-3xl md:text-3xl">Control Panel</h1>
         </header>
         <ul class="p-3 h-full flex flex-col text-red-600">
-            <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Dashboard</a>
-            <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Toys</a>
+            <a href="dashboard.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Dashboard</a>
+            <a href="toys.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Toys</a>
             <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Users</a>
             <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Sales</a>
             <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Reports</a>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="p-3 flex flex-col bg-white rounded-3xl">
-                <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Main Site</a>
+                <a href="profile.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Main Site</a>
                 <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Settings</a>
                 <a href="../../processors/auth/logoutAuth.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Logout</a>
             </div>
