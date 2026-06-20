@@ -6,7 +6,7 @@ $_SESSION['title'] = "Categories";
 include('templates/adminHead.php');
 include('templates/adminNavbar.php');
 
-$stmt = $pdo->query('SELECT * FROM toycategories');
+$stmt = $pdo->query('SELECT * FROM toycategories ORDER BY tcid DESC');
 $stmt->execute();
 $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -33,12 +33,12 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <tbody>
                 <?php foreach($categories as $category): ?>
                     <tr>
-                        <td class="p-1 text-center"><?= htmlspecialchars($category['ctid']) ?></td>
+                        <td class="p-1 text-center"><?= htmlspecialchars($category['tcid']) ?></td>
                         <td class="p-1 text-center"><?= htmlspecialchars($category['category']) ?></td>
                         <td class="p-1 flex justify-center gap-2">
-                            <a href="categories/edit.php?ctid=<?= $category['ctid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
+                            <a href="categories/edit.php?tcid=<?= $category['tcid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
                             <form action="../processors/categories/delete.php" method="POST">
-                                <button type="submit" name="delete" value="<?= $category['ctid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
+                                <button type="submit" name="delete" value="<?= $category['tcid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
                             </form>
                         </td>
                     </tr>
@@ -47,7 +47,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </div>
     <div class="grid grid-cols-2 gap-2 text-center lg:flex">
-        <a href="types/add.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Add Category</a>
+        <a href="categories/add.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Add Category</a>
         <a href="toys.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Toys</a>
         <a href="brands.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Brands</a>
         <a href="types.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Types</a>

@@ -5,7 +5,7 @@ require_once __DIR__ . '/../../config/database.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== "POST") {
     $_SESSION['error'] = "You do not have the request permission to access this processor.";
-    header("Location: ../../brands/brands.php");
+    header("Location: ../../pages/brands.php");
     exit;
 }
 

@@ -6,7 +6,7 @@ $_SESSION['title'] = "Types";
 include('templates/adminHead.php');
 include('templates/adminNavbar.php');
 
-$stmt = $pdo->query('SELECT * FROM toytypes');
+$stmt = $pdo->query('SELECT * FROM toytypes ORDER BY ttid DESC');
 $stmt->execute();
 $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
 

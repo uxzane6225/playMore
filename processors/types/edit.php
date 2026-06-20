@@ -1,4 +1,5 @@
 <?php
+
 require_once __DIR__ . '/../auth/auth.php';
 require_once __DIR__ . '/../../config/database.php';
 
@@ -18,7 +19,7 @@ $type = trim($_POST['type']);
 $ttid = $_SESSION['ttid'] ?? 0;
 
 if (empty($type)) {
-    $_SESSION['brandError'] = "Toy Type is empty!";
+    $_SESSION['typeError'] = "Toy Type is empty!";
     header("Location: ../../pages/types/edit.php?ttid={$ttid}");
     exit;
 }

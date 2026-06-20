@@ -6,13 +6,12 @@ $_SESSION['title'] = "Brands";
 include('templates/adminHead.php');
 include('templates/adminNavbar.php');
 
-$stmt = $pdo->query('SELECT * FROM brands');
+$stmt = $pdo->query('SELECT * FROM brands ORDER BY bid DESC');
 $stmt->execute();
 $brands = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <main class="p-5 lg:col-span-4 h-full w-full flex flex-col gap-5">
-    
     <div class="flex gap-5 items-center">
         <h2 class="text-4xl font-bold">Brands</h2>
         <?php if(isset($_SESSION['error'])): ?>
@@ -23,8 +22,8 @@ $brands = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
     </div>
-    <div class="h-full w-full bg-gray-200 overflow-scroll border border-b-4 rounded-t-2xl border-b-red-600">
-        <table class="w-full">
+    <div class="w-full bg-gray-200 overflow-scroll lg:overflow-hidden border border-b-4 rounded-t-2xl border-b-red-600">
+        <table class="h-full w-full">
             <thead class="text-white bg-red-700">
                 <th class="p-1 lg:p-3">ID</th>
                 <th class="p-1 lg:p-3">Brand</th>

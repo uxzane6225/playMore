@@ -19,7 +19,7 @@ $type = trim($_POST['type']);
 $_SESSION['oldType'] = $type;
 
 if (empty($type)) {
-    $_SESSION['brandError'] = "Toy Type is empty!";
+    $_SESSION['typeError'] = "Toy Type is empty!";
     header("Location: ../../pages/types/add.php");
     exit;
 }

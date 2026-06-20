@@ -3,7 +3,7 @@ session_start();
 
 require __DIR__ . '/../../config/database.php';
 
-define('BASE_URL', '/playMore/');
+define('BASE_URL', '/');
 
 $timeout = 1800;
 
@@ -44,7 +44,7 @@ function require_login() {
 
 function require_guest() {
     if (isset($_SESSION['aid'])) {
-        header("Location: " . BASE_URL . "dashboard.php");
+        header("Location: " . BASE_URL . "pages/dashboard.php");
         exit;
     }
 }
