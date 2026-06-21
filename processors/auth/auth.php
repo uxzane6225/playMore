@@ -3,7 +3,7 @@ session_start();
 
 require __DIR__ . '/../../config/database.php';
 
-define('BASE_URL', '/');
+define('BASE_URL', 'http://playmore.test/');
 
 $timeout = 1800;
 
