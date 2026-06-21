@@ -7,7 +7,7 @@ include('templates/head.php');
 include('templates/navbar.php');
 ?>
 <header class="m-5 p-5 flex flex-col items-center gap-5 bg-white rounded-xl shadow-xl lg:flex-row lg:items-start">
-    <img src="../storage/images/<?= $_SESSION['pfp'] ?>" alt="Profile Picture" class="w-60 border border-4 border-red-700 rounded-full">
+    <img src="../storage/images/<?= isset($_SESSION['pfp']) ? $_SESSION['pfp'] : "blankPfp.jpg" ?>" alt="Profile Picture" class="w-60 border border-4 border-red-700 rounded-full">
     <div class="text-center lg:py-5 lg:text-left">
         <h1 class="text-xl font-bold lg:text-3xl"><?= $_SESSION['username']; ?>'s Profile</h1>
         <p><?= isset($_SESSION['bio']) ? $_SESSION['bio'] : "No description"; ?></p>

@@ -51,7 +51,7 @@ $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
          <div class="flex gap-5">
             <div>
                 <label for="min">Minimum Age</label>
-                <input type="number" name="min" id="min" value="<?= isset($_SESSION['oldMin']) ? $_SESSION['oldMin'] : ''; unset($_SESSION['oldMin']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+                <input type="number" name="min" id="min" value="<?= isset($_SESSION['oldMin']) ? $_SESSION['oldMin'] : ''; unset($_SESSION['oldMin']);?>" class="p-1 w-1/2 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
                 <?php if(isset($_SESSION['minError'])): ?>
                     <p class="text-end text-xs"><?= $_SESSION['minError']; ?></p>
                     <?php unset($_SESSION['minError']); ?>
@@ -59,7 +59,7 @@ $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
             </div>
             <div>
                 <label for="max">Maximum Age</label>
-                <input type="number" name="max" id="max" value="<?= isset($_SESSION['oldMax']) ? $_SESSION['oldMax'] : ''; unset($_SESSION['oldMax']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+                <input type="number" name="max" id="max" value="<?= isset($_SESSION['oldMax']) ? $_SESSION['oldMax'] : ''; unset($_SESSION['oldMax']);?>" class="p-1 w-1/2 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
                 <?php if(isset($_SESSION['maxError'])): ?>
                     <p class="text-end text-xs"><?= $_SESSION['maxError']; ?></p>
                     <?php unset($_SESSION['maxError']); ?>
@@ -70,7 +70,7 @@ $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
 
          <div class="flex flex-col gap-1">
             <label for="price">Price</label>
-            <input type="number" name="price" id="price" value="<?= isset($_SESSION['oldPrice']) ? $_SESSION['oldPrice'] : ''; unset($_SESSION['oldPrice']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+            <input type="text" name="price" id="price" value="<?= isset($_SESSION['oldPrice']) ? $_SESSION['oldPrice'] : ''; unset($_SESSION['oldPrice']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
             <?php if(isset($_SESSION['priceError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['priceError']; ?></p>
                 <?php unset($_SESSION['priceError']); ?>
@@ -93,9 +93,9 @@ $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
                     <option value="<?= $brand['bid'] ?>"><?= $brand['brand'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <?php if(isset($_SESSION['addressError'])): ?>
-                <p class="text-end text-xs"><?= $_SESSION['addressError']; ?></p>
-                <?php unset($_SESSION['addressError']); ?>
+            <?php if(isset($_SESSION['brandError'])): ?>
+                <p class="text-end text-xs"><?= $_SESSION['brandError']; ?></p>
+                <?php unset($_SESSION['brandError']); ?>
             <?php endif; ?>
         </div>
 
@@ -106,9 +106,9 @@ $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
                     <option value="<?= $category['tcid'] ?>"><?= $category['category'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <?php if(isset($_SESSION['addressError'])): ?>
-                <p class="text-end text-xs"><?= $_SESSION['addressError']; ?></p>
-                <?php unset($_SESSION['addressError']); ?>
+            <?php if(isset($_SESSION['categoryError'])): ?>
+                <p class="text-end text-xs"><?= $_SESSION['categoryError']; ?></p>
+                <?php unset($_SESSION['categoryError']); ?>
             <?php endif; ?>
         </div>
 
@@ -119,9 +119,9 @@ $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
                     <option value="<?= $type['ttid'] ?>"><?= $type['type'] ?></option>
                 <?php endforeach; ?>
             </select>
-            <?php if(isset($_SESSION['addressError'])): ?>
-                <p class="text-end text-xs"><?= $_SESSION['addressError']; ?></p>
-                <?php unset($_SESSION['addressError']); ?>
+            <?php if(isset($_SESSION['typeError'])): ?>
+                <p class="text-end text-xs"><?= $_SESSION['typeError']; ?></p>
+                <?php unset($_SESSION['typeError']); ?>
             <?php endif; ?>
         </div>
         <div>

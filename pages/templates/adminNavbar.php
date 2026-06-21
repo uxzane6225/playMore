@@ -1,5 +1,9 @@
 <?php
     require_login();
+    if (!isset($_SESSION['role']) || ($_SESSION['role'] !== "admin" && $_SESSION['role'] !== "staff")) {
+        header("Location: " . BASE_URL . "pages/profile.php");
+        exit;
+    }
 ?>
 <div class="h-full flex fixed lg:static">
     <nav id="navbar" class="h-full w-full flex flex-col justify-between bg-white shadow-xl hidden lg:flex">
@@ -15,7 +19,7 @@
         </ul>
         <div class="p-3 flex flex-col gap-3 bg-red-600 rounded-t-xl shadow-xl">
             <div class="p-1 flex bg-white rounded-3xl gap-5">
-                <img src="../../resources/images/blankPfp.jpg" alt="profile picture" class="w-20 h-20 bg-gray-300 rounded-full">
+                <img src="../../storage/images/<?= isset($_SESSION['pfp']) ? $_SESSION['pfp'] : "blankPfp.jpg" ?>" alt="profile picture" class="w-20 h-20 bg-gray-300 rounded-full">
                 <div class="w-full flex flex-col justify-center">
                     <a href="<?= BASE_URL ?>pages/profile.php" class="text-xl font-bold"><?= $_SESSION['username']; ?></a>
                     <p><?= $_SESSION['email'] ?></p>

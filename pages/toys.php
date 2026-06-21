@@ -6,19 +6,28 @@ $_SESSION['title'] = "Toys";
 include('templates/adminHead.php');
 include('templates/adminNavbar.php');
 
-$stmt = $pdo->query('SELECT * FROM toys t INNER JOIN accounts a ON a.aid = t.aid INNER JOIN toytypes tt ON tt.ttid = t.ttid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN brands b ON b.bid = t.bid');
+$stmt = $pdo->query('SELECT t.tid, t.name, t.description, b.brand, b.bid, tt.type, tt.ttid, tc.category, tc.tcid, t.min_age, t.max_age, t.price, t.stock, a.fullname, a.aid, t.createDateTime, t.updateDateTime FROM toys t INNER JOIN accounts a ON a.aid = t.aid INNER JOIN toytypes tt ON tt.ttid = t.ttid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN brands b ON b.bid = t.bid');
 $stmt->execute();
 $toys = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <main class="p-5 lg:col-span-4 h-full w-full flex flex-col gap-5">
-    <h2 class="text-4xl font-bold">Toys</h2>
+    <div class="flex gap-5 items-center">
+        <h2 class="text-4xl font-bold">Toys</h2>
+        <?php if(isset($_SESSION['error'])): ?>
+            <p class="p-2 text-md text-red-700 bg-red-200 rounded-xl"><?= $_SESSION['error']; ?></p>
+            <?php unset($_SESSION['error']); ?>
+        <?php elseif(isset($_SESSION['success'])): ?>
+            <p class="p-2 text-md text-green-700 bg-green-200 rounded-xl"><?= $_SESSION['success']; ?></p>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+    </div>
     <div class="h-full w-full bg-gray-200 overflow-scroll border border-b-4 rounded-t-2xl border-b-red-600">
         <table class="w-full">
             <thead class="text-white bg-red-700">
                 <th class="p-1 lg:p-3">ID</th>
                 <th class="p-1 lg:p-3">Name</th>
-                <th class="p-1 lg:p-3">Description</th>
+                <!-- <th class="p-1 lg:p-3">Description</th> -->
                 <th class="p-1 lg:p-3">Brand</th>
                 <th class="p-1 lg:p-3">Type</th>
                 <th class="p-1 lg:p-3">Category</th>
@@ -32,26 +41,28 @@ $toys = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
                 <?php foreach($toys as $toy): ?>
-                    <tr>
-                        <td><?= $toy['tid'] ?></td>
-                        <td><?= htmlspecialchars($toy['name']) ?></td>
-                        <td><?= htmlspecialchars($toy['description']) ?></td>
-                        <td><?= htmlspecialchars($toy['bi']) ?></td>
-                        <td><?= htmlspecialchars($toy['ttid']) ?></td>
-                        <td><?= htmlspecialchars($toy['tcid']) ?></td>
-                        <td>
+                    <tr class="text-center border border-b-gray-400 even:bg-gray-300">
+                        <td class="p-1 lg:p-3"><?= $toy['tid'] ?></td>
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['name']) ?></td>
+                        <!-- <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['description']) ?></td> -->
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['brand']) ?></td>
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['type']) ?></td>
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['category']) ?></td>
+                        <td class="p-1 lg:p-3">
                             <?= $toy['min_age'] ?> - <?= $toy['max_age'] ?>
                         </td>
-                        <td><?= htmlspecialchars($toy['price']) ?></td>
-                        <td><?= htmlspecialchars($toy['stock']) ?></td>
-                        <td><?= htmlspecialchars($toy['aid']) ?></td>
-                        <td><?= htmlspecialchars($toy['createdDateTime']) ?></td>
-                        <td><?= htmlspecialchars($toy['updatedDateTime']) ?></td>
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['price']) ?></td>
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['stock']) ?></td>
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['fullname']) ?></td>
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['createDateTime']) ?></td>
+                        <td class="p-1 lg:p-3"><?= htmlspecialchars($toy['updateDateTime']) ?></td>
                         <td>
-                            <a href="toys/edit.php">Details</a>
-                            <form action="../processors/toys/delete.php" method="POST">
-                                <button type="submit" name="delete">Delete</button>
-                            </form>
+                            <div class="flex flex-col gap-2">
+                                <a href="toys/edit.php?tid=<?= $toy['tid'] ?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
+                                <form action="../processors/toys/delete.php" method="POST">
+                                    <button type="submit" name="delete" value="<?= $toy['tid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>

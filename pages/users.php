@@ -61,7 +61,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                     <button type="submit" name="delete" value="<?= $user['aid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
                                 </form>
                             </div>
-                            
                         </td>
                     </tr>
                 <?php endforeach; ?>
