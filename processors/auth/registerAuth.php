@@ -69,7 +69,7 @@ try {
     $result = $check->fetch();
 
     if ($result) {
-        $_SESSINO['error'] = "Email already exists!";
+        $_SESSION['emailError'] = "Email already exists!";
         header("Location: ../../pages/register.php");
         exit;
     }
