@@ -12,7 +12,16 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
 <main class="p-5 lg:col-span-4 h-full w-full flex flex-col gap-5">
-    <h2 class="text-4xl font-bold">Users</h2>
+    <div class="flex gap-5 items-center">
+        <h2 class="text-4xl font-bold">Users</h2>
+        <?php if(isset($_SESSION['error'])): ?>
+            <p class="p-2 text-md text-red-700 bg-red-200 rounded-xl"><?= $_SESSION['error']; ?></p>
+            <?php unset($_SESSION['error']); ?>
+        <?php elseif(isset($_SESSION['success'])): ?>
+            <p class="p-2 text-md text-green-700 bg-green-200 rounded-xl"><?= $_SESSION['success']; ?></p>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+    </div>
     <div class="h-full w-full bg-gray-200 overflow-scroll border border-b-4 rounded-t-2xl border-b-red-600">
         <table class="w-full">
             <thead class="text-white bg-red-700">
@@ -32,7 +41,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
                 <?php foreach($users as $user): ?>
-                    <tr class="text-center even:bg-gray-300">
+                    <tr class="text-center border border-b-gray-400 even:bg-gray-300">
                         <td class="p-1 lg:p-3"><?= $user['aid'] ?></td>
                         <td class="p-1 lg:p-3"><?= htmlspecialchars($user['fullname']) ?></td>
                         <td class="p-1 lg:p-3"><?= htmlspecialchars($user['username']) ?></td>

@@ -83,8 +83,8 @@ try {
     $result = $check->fetch();
 
     if ($result) {
-        $_SESSINO['error'] = "Email already exists!";
-        header("Location: ../../pages/register.php");
+        $_SESSION['error'] = "Email already exists!";
+        header("Location: ../../pages/users/add.php");
         exit;
     }
     
@@ -99,16 +99,6 @@ try {
         ':password' => $hash,
         ":role" => $role
     ]);
-
-    $_SESSION['aid'] = $pdo->lastInsertId();
-    $_SESSION['fullname'] = $name;
-    $_SESSION['email'] = $email;
-    $_SESSION['phone'] = $phone;
-    $_SESSION['address'] = $home;
-
-    $stmt = $pdo->prepare("SELECT role FROM accounts WHERE aid = ?");
-    $stmt->execute([$_SESSION['aid']]);
-    $result = $stmt->fetch();
     
     $_SESSION['success'] = "User Added Successfully";
 

@@ -32,10 +32,10 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
                 <?php foreach($categories as $category): ?>
-                    <tr>
+                    <tr class="border border-b-gray-400 even:bg-gray-300">
                         <td class="p-1 text-center"><?= htmlspecialchars($category['tcid']) ?></td>
                         <td class="p-1 text-center"><?= htmlspecialchars($category['category']) ?></td>
-                        <td class="p-1 flex justify-center gap-2">
+                        <td class="p-1 flex justify-center gap-2 border border-l-gray-400">
                             <a href="categories/edit.php?tcid=<?= $category['tcid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
                             <form action="../processors/categories/delete.php" method="POST">
                                 <button type="submit" name="delete" value="<?= $category['tcid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>

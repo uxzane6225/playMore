@@ -10,14 +10,14 @@
             <a href="<?= BASE_URL ?>pages/dashboard.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Dashboard</a>
             <a href="<?= BASE_URL ?>pages/toys.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Toys</a>
             <a href="<?= BASE_URL ?>pages/users.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Users</a>
-            <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Sales</a>
-            <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Reports</a>
+            <a href="<?= BASE_URL ?>pages/sales.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Sales</a>
+            <!-- <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Reports</a> -->
         </ul>
         <div class="p-3 flex flex-col gap-3 bg-red-600 rounded-t-xl shadow-xl">
             <div class="p-1 flex bg-white rounded-3xl gap-5">
                 <img src="../../resources/images/blankPfp.jpg" alt="profile picture" class="w-20 h-20 bg-gray-300 rounded-full">
                 <div class="w-full flex flex-col justify-center">
-                    <a href="<?= BASE_URL ?>pages/profilePage.php" class="text-xl font-bold"><?= $_SESSION['username']; ?></a>
+                    <a href="<?= BASE_URL ?>pages/profile.php" class="text-xl font-bold"><?= $_SESSION['username']; ?></a>
                     <p><?= $_SESSION['email'] ?></p>
                 </div>
             </div>

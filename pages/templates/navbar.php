@@ -1,3 +1,6 @@
+<?php
+    require_login();
+?>
 <nav class="p-5 w-full text-white bg-red-600 rounded-b-3xl lg:flex">
     <button id="expand" class="w-full font-bold lg:hidden">Expand</button>
     <div id="navbar" class="mt-1 w-full flex flex-col justify-between gap-2 text-xl lg:flex-row lg:gap-0 hidden lg:flex lg:text-lg">
@@ -7,7 +10,7 @@
             <li><a href="shop.php" class=" transition duration-300 hover:text-yellow-200">Shop</a></li>
             <li><a href="contact.php" class="transition duration-300 hover:text-yellow-200">Contact</a></li>
             <li><a href="about.php" class="transition duration-300 hover:text-yellow-200">About</a></li>
-            <a href="profile.php?id=<?= $_SESSION['aid'] ?>">Profile</a>
+            <li><a href="profile.php?id=<?= $_SESSION['aid'] ?>" class="transition duration-300 hover:text-yellow-200">Profile</a></li>
             <?php if($_SESSION['role'] === "admin" || $_SESSION['role'] === 'staff'): ?>
                 <li><a href="dashboard.php" class="transition duration-300 hover:text-yellow-200">Control Panel</a></li>
             <?php endif; ?>

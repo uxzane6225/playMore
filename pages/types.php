@@ -32,10 +32,10 @@ $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
                 <?php foreach($types as $type): ?>
-                    <tr>
+                    <tr class="border border-b-gray-400 even:bg-gray-300">
                         <td class="p-1 text-center"><?= htmlspecialchars($type['ttid']) ?></td>
                         <td class="p-1 text-center"><?= htmlspecialchars($type['type']) ?></td>
-                        <td class="p-1 flex justify-center gap-2">
+                        <td class="p-1 flex justify-center gap-2 border border-l-gray-400">
                             <a href="types/edit.php?ttid=<?= $type['ttid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
                             <form action="../processors/types/delete.php" method="POST">
                                 <button type="submit" name="delete" value="<?= $type['ttid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>

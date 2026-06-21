@@ -5,6 +5,20 @@ $_SESSION['title'] = "Ediit Admin/Staff";
 include '../templates/adminHead.php';
 include '../templates/adminNavbar.php';
 
+$aid = $_GET['aid'] ?? 0;
+
+$stmt = $pdo->prepare("SELECT * FROM accounts WHERE aid = ?");
+$stmt->execute([$aid]);
+
+$account = $stmt->fetch();
+
+if (!$account) {
+    $_SESSION['error'] = "Account not found!";
+    header("Location: ../categories.php");
+    exit;
+}
+
+$_SESSION['targetAid'] = $account['aid'];
 ?>
 <main class="p-5 lg:col-span-4 h-full w-full flex flex-col gap-5">
     <div class="flex gap-5 items-center">
@@ -20,7 +34,7 @@ include '../templates/adminNavbar.php';
     <form action="../../processors/users/edit.php" method="POST" class="flex flex-col text-md gap-3">
         <div class="flex flex-col gap-1">
             <label for="name">Full Name</label>
-            <input type="text" name="name" id="name" value="<?= isset($_SESSION['oldName']) ? $_SESSION['oldName'] : ''; unset($_SESSION['oldName']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+            <input type="text" name="name" id="name" value="<?= $account['fullname'];?>"" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
             <?php if(isset($_SESSION['nameError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['nameError']; ?></p>
                 <?php unset($_SESSION['nameError']); ?>
@@ -28,7 +42,7 @@ include '../templates/adminNavbar.php';
         </div>
         <div class="flex flex-col gap-1">
             <label for="email">Email Address</label>
-            <input type="email" name="email" id="email" value="<?= isset($_SESSION['oldEmail']) ? $_SESSION['oldEmail'] : ''; unset($_SESSION['oldEmail']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+            <input type="email" name="email" id="email" value="<?= $account['email'];?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
             <?php if(isset($_SESSION['emailError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['emailError']; ?></p>
                 <?php unset($_SESSION['emailError']); ?>
@@ -37,7 +51,7 @@ include '../templates/adminNavbar.php';
 
          <div class="flex flex-col gap-1">
             <label for="phone">Phone #</label>
-            <input type="text" name="phone" id="phone" value="<?= isset($_SESSION['oldPhone']) ? $_SESSION['oldPhone'] : ''; unset($_SESSION['oldPhone']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+            <input type="text" name="phone" id="phone" value="<?= $account['phone'];?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
             <?php if(isset($_SESSION['phoneError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['phoneError']; ?></p>
                 <?php unset($_SESSION['phoneError']); ?>
@@ -46,7 +60,7 @@ include '../templates/adminNavbar.php';
 
          <div class="flex flex-col gap-1">
             <label for="home">Home Address</label>
-            <input type="text" name="home" id="home" value="<?= isset($_SESSION['oldHome']) ? $_SESSION['oldHome'] : ''; unset($_SESSION['oldHome']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+            <input type="text" name="home" id="home" value="<?= $account['address'];?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
             <?php if(isset($_SESSION['homeError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['homeError']; ?></p>
                 <?php unset($_SESSION['homeError']); ?>
@@ -64,7 +78,7 @@ include '../templates/adminNavbar.php';
 
         <div class="flex flex-col gap-1">
             <label for="confirm">Confirm Password</label>
-            <input type="password" name="confirm" id="confirm"  class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+            <input type="password" name="confirm" id="confirm" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
             <?php if(isset($_SESSION['confirmError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['confirmError']; ?></p>
                 <?php unset($_SESSION['confirmError']); ?>
@@ -75,6 +89,7 @@ include '../templates/adminNavbar.php';
             <select name="role" id="role" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
                 <option value="admin">Admin</option>
                 <option value="staff">Staff</option>
+                <option value="user">Customer</option>
             </select>
             <?php if(isset($_SESSION['addressError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['addressError']; ?></p>

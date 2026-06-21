@@ -22,8 +22,8 @@ $brands = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
     </div>
-    <div class="w-full bg-gray-200 overflow-scroll lg:overflow-hidden border border-b-4 rounded-t-2xl border-b-red-600">
-        <table class="h-full w-full">
+    <div class="h-full w-full bg-gray-200 overflow-scroll lg:overflow-hidden border border-b-4 rounded-t-2xl border-b-red-600">
+        <table class="w-full">
             <thead class="text-white bg-red-700">
                 <th class="p-1 lg:p-3">ID</th>
                 <th class="p-1 lg:p-3">Brand</th>
@@ -31,10 +31,10 @@ $brands = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </thead>
             <tbody>
                 <?php foreach($brands as $brand): ?>
-                    <tr>
+                    <tr class="border border-b-gray-400 even:bg-gray-300">
                         <td class="p-1 text-center"><?= htmlspecialchars($brand['bid']) ?></td>
                         <td class="p-1 text-center"><?= htmlspecialchars($brand['brand']) ?></td>
-                        <td class="p-1 flex justify-center gap-2">
+                        <td class="p-1 flex justify-center gap-2 border border-l-gray-400">
                             <a href="brands/edit.php?bid=<?= $brand['bid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
                             <form action="../processors/brands/delete.php" method="POST">
                                 <button type="submit" name="delete" value="<?= $brand['bid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
