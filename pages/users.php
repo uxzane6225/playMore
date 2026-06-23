@@ -57,9 +57,10 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td class="p-1 flex justify-center gap-2 border border-l-gray-400">
                             <div class="flex flex-col gap-2">
                                 <a href="users/edit.php?aid=<?= $user['aid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
-                                <form action="../processors/users/delete.php" method="POST" class="flex">
+                                <!-- <form action="../processors/users/delete.php" method="POST" class="flex">
                                     <button type="submit" name="delete" value="<?= $user['aid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
-                                </form>
+                                </form> -->
+                                <button type="submit" value="<?= $user['aid'] ?>" class="deleteBtn py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
                             </div>
                         </td>
                     </tr>
@@ -68,5 +69,36 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </table>
     </div>
     <a href="users/add.php" class="w-fit py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Add Admin/Employee</a>
+    <dialog id="modal" class="p-5 flex flex-col gap-5 text-center rounded-lg hidden">
+        <h3 class="text-xl font-bold">Delete this User?</h3>
+        <div class="flex gap-5">
+            <form action="../processors/users/delete.php" method="POST">
+                <button id="confirmBtn" name="delete" class="py-1 px-5 text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Confirm</button>
+            </form>
+            <button id="cancel" class="py-1 px-5 bg-gray-300 rounded-lg transition duration-300 hover:bg-gray-200">Cancel</button>
+        </div>
+    </dialog>
 </main>
+<script>
+    let modal = document.getElementById('modal');
+    let deleteBtn = document.querySelectorAll('.deleteBtn');
+    let confirmBtn = document.getElementById('confirmBtn');
+    let cancel = document.getElementById('cancel');
+    
+    deleteBtn.forEach(dlt => {
+        dlt.addEventListener('click', e => {
+            modal.showModal();
+            modal.classList.remove('hidden');
+            let user_id = dlt.value;
+            confirmBtn.value = user_id;
+        });
+    });
+
+    cancel.addEventListener('click', e => {
+        modal.close();
+        modal.classList.add('hidden');
+        let user_id = deleteBtn.value;
+        confirmBtn.value = user_id;
+    });
+</script>
 <?php include('templates/foot.php'); ?>
