@@ -34,7 +34,7 @@ include 'templates/head.php';
                     <button type="button" id="show" name="show" class="p-1 bg-red-600 rounded-lg">Show</button>
                 </div>
                 <div class="flex items-center justify-between">
-                    <label for="show" class="pl-2 text-lg flex items-center gap-2"><input type="checkbox" id="remember" name="remember" class="w-4 h-4 rounded-lg cursor-pointer"> Remember Me</label>
+                    <label for="remember" class="pl-2 text-lg flex items-center gap-2"><input type="checkbox" id="remember" name="remember" class="w-4 h-4 rounded-lg cursor-pointer"> Remember Me</label>
                     <?php if(isset($_SESSION['passError'])): ?>
                         <p class="text-end text-xs"><?= $_SESSION['passError']; ?></p>
                         <?php unset($_SESSION['passError']); ?>

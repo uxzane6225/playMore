@@ -27,7 +27,7 @@
             </div>
             <div class="p-3 flex flex-col bg-white rounded-3xl">
                 <a href="profile.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Main Site</a>
-                <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Settings</a>
+                <!-- <a href="" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Settings</a> -->
                 <a href="<?= BASE_URL ?>processors/auth/logoutAuth.php" class="p-2 w-full text-lg transition duration-300 rounded-lg hover:bg-red-100">Logout</a>
             </div>
         </div>

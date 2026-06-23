@@ -5,15 +5,15 @@ require __DIR__ . '/../../config/database.php';
 
 define('BASE_URL', 'http://playmore.test/');
 
-$timeout = 1800;
+$timeout = 3600;
 
 if (isset($_SESSION['last_activity'])) {
     if (time() - $_SESSION['last_activity'] > $timeout) {
         session_unset();
         session_destroy();
-        session_start();
+        //session_start();
         setcookie('remember_token', "", time() - 3600, "/");
-        setcookie('remember_email', "", time() -3600, "/");
+        setcookie('remember_email', "", time() - 3600, "/");
     }
 }
 
