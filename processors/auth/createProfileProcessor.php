@@ -87,6 +87,7 @@ try {
         ]);
     }
 
+    $_SESSION['pfp'] = $newName ?? 'blankPfp.jpb';
     $_SESSION['username'] = $user;
     $_SESSION['bio'] = $bio;
     $_SESSION['gender'] = $gender;

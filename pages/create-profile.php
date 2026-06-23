@@ -10,6 +10,11 @@ if (empty($_SESSION['aid'])) {
     exit;
 }
 
+if (isset($_SESSION['username'])) {
+    header("Location: profile.php");
+    exit;
+}
+
 include('templates/head.php');
 ?>
 <main  class="h-full flex flex-col md:justify-center md:items-center md:bg-red-600">

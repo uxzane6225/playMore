@@ -23,7 +23,7 @@ $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
     </div>
-    <div class="h-full w-full bg-gray-200 overflow-scroll border border-b-4 rounded-t-2xl border-b-red-600">
+    <div class="h-full w-full text-sm bg-gray-200 overflow-scroll border border-b-4 rounded-t-2xl border-b-red-600">
         <table class="w-full">
             <thead class="text-white bg-red-700">
                 <th class="p-1 lg:p-3">ID</th>

@@ -22,8 +22,8 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
     </div>
-    <div class="h-full w-full bg-gray-200 overflow-scroll border border-b-4 rounded-t-2xl border-b-red-600">
-        <table class="w-full">
+    <div class="h-full w-full text-sm bg-gray-200 overflow-scroll lg:overflow-hidden border border-b-4 rounded-t-2xl border-b-red-600">
+        <table class="w-full overflow-scroll">
             <thead class="text-white bg-red-700">
                 <th class="p-1 lg:p-3">ID</th>
                 <th class="p-1 lg:p-3">Full Name</th>
@@ -54,7 +54,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td class="p-1 lg:p-3"><?= htmlspecialchars($user['birthdate']) ?></td>
                         <td class="p-1 lg:p-3"><?= htmlspecialchars($user['createDateTime']) ?></td>
                         <td class="p-1 lg:p-3"><?= htmlspecialchars($user['updateDateTime']) ?></td>
-                        <td>
+                        <td class="p-1 flex justify-center gap-2 border border-l-gray-400">
                             <div class="flex flex-col gap-2">
                                 <a href="users/edit.php?aid=<?= $user['aid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
                                 <form action="../processors/users/delete.php" method="POST" class="flex">

@@ -88,7 +88,7 @@ $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
 
         <div class="flex flex-col gap-1">
             <label for="brand">Brand</label>
-            <select name="brand" id="brand" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+            <select name="brand" id="brand" value="<?= isset($_SESSION['oldBrand']) ? $_SESSION['oldBrand'] : ''; unset($_SESSION['oldBrand']); ?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
                 <?php foreach($brands as $brand): ?>
                     <option value="<?= $brand['bid'] ?>"><?= $brand['brand'] ?></option>
                 <?php endforeach; ?>

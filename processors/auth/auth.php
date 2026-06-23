@@ -12,6 +12,8 @@ if (isset($_SESSION['last_activity'])) {
         session_unset();
         session_destroy();
         session_start();
+        setcookie('remember_token', "", time() - 3600, "/");
+        setcookie('remember_email', "", time() -3600, "/");
     }
 }
 
