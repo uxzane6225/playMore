@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
     exit;
 }
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'staff') {
+if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'staff' && $_SESSION['role'] !== 'admin')) {
     $_SESSION['error'] = "You do not have the permission to add Sales.";
     header("Location: ../../pages/sales.php");
     exit;
