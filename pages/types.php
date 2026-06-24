@@ -37,9 +37,10 @@ $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td class="p-1 text-center"><?= htmlspecialchars($type['type']) ?></td>
                         <td class="p-1 flex justify-center gap-2 border border-l-gray-400">
                             <a href="types/edit.php?ttid=<?= $type['ttid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
-                            <form action="../processors/types/delete.php" method="POST">
+                            <!-- <form action="../processors/types/delete.php" method="POST">
                                 <button type="submit" name="delete" value="<?= $type['ttid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
-                            </form>
+                            </form> -->
+                            <button type="submit" value="<?= $type['ttid'] ?>" class="deleteBtn py-1 px-5 text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -52,5 +53,15 @@ $types = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <a href="brands.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Brands</a>
         <a href="categories.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Categories</a>
     </div>
+    <dialog id="modal" class="p-5 flex flex-col gap-5 text-center rounded-lg hidden">
+        <h3 class="text-xl font-bold">Delete this Toy Type?</h3>
+        <div class="flex gap-5">
+            <form action="../processors/types/delete.php" method="POST">
+                <button id="confirmBtn" name="delete" class="py-1 px-5 text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Confirm</button>
+            </form>
+            <button id="cancel" class="py-1 px-5 bg-gray-300 rounded-lg transition duration-300 hover:bg-gray-200">Cancel</button>
+        </div>
+    </dialog>
 </main>
+<script src="../scripts/deleteModal.js"></script>
 <?php include('templates/foot.php'); ?>
