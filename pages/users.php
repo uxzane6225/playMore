@@ -56,6 +56,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <td class="p-1 lg:p-3"><?= htmlspecialchars($user['updateDateTime']) ?></td>
                         <td class="p-1 flex justify-center gap-2 border border-l-gray-400">
                             <div class="flex flex-col gap-2">
+                                <a href="users/view.php?aid=<?= $user['aid'];?>" class="py-1 px-5 bg-blue-300 rounded-lg transition duration-300 hover:bg-blue-400">View</a>
                                 <a href="users/edit.php?aid=<?= $user['aid'];?>" class="py-1 px-5 bg-yellow-300 rounded-lg transition duration-300 hover:bg-yellow-400">Edit</a>
                                 <!-- <form action="../processors/users/delete.php" method="POST" class="flex">
                                     <button type="submit" name="delete" value="<?= $user['aid'] ?>" class="py-1 px-5 w-full h-full text-white bg-red-600 rounded-lg transition duration-300 hover:bg-red-500">Delete</button>

@@ -41,7 +41,6 @@ if (empty($birthdate)) {
 }
 
 if ($hasError) {
-    $_SESSION['error'] = "idk";
     header("Location: ../../pages/create-profile.php");
     exit;
 }
@@ -88,7 +87,7 @@ try {
         ]);
     }
     
-    $stmt = $pdo->prepare("SELECT pid WHERE aid = ?");
+    $stmt = $pdo->prepare("SELECT pid FROM profiles WHERE aid = ?");
     $stmt->execute([$_SESSION['aid']]);
     $pid = $stmt->fetchColumn();
 

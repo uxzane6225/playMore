@@ -32,9 +32,9 @@
             </div>
         </div>
     </nav>
-    <div id="showBar" class="py-2 px-2 h-fit w-fit flex item-center justify-center text-xl bg-red-500 rounded-r-xl cursor-pointer lg:hidden">
+    <button id="showBar" class="py-2 px-2 h-fit w-fit flex item-center justify-center text-white text-xl bg-red-500 rounded-r-xl cursor-pointer lg:hidden">
         >
-    </div>
+    </button>
 </div>
 
 <script src="../../scripts/adminNavbarScript.js"></script>

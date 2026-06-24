@@ -11,7 +11,7 @@ include('templates/navbar.php');
     <div class="text-center lg:py-5 lg:text-left">
         <h1 class="text-xl font-bold lg:text-3xl"><?= $_SESSION['username']; ?>'s Profile</h1>
         <p><?= isset($_SESSION['bio']) ? $_SESSION['bio'] : "No description"; ?></p>
-        <p><?= isset($_SESSION['pfp']) ? $_SESSION['pfp'] : "blankPfp.jpg" ?></p>
+        <!-- <p><?= isset($_SESSION['pfp']) ? $_SESSION['pfp'] : "blankPfp.jpg" ?></p> -->
     </div>
 </header>
 <main class="m-5 p-5 flex flex-col gap-5">
