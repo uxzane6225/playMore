@@ -74,6 +74,7 @@ try {
         exit;
     }
 
+    $_SESSION['pid'] = $profile['pid'];
     $_SESSION['pfp'] = $profile['pfp'];
     $_SESSION['username'] = $profile['username'];
     $_SESSION['bio'] = $profile['bio'];

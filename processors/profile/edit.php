@@ -21,7 +21,7 @@ $_SESSION['oldGender'] = $gender;
 $_SESSION['oldBirthdate'] = $birthdate;
 
 if (empty($user)) {
-    $_SESSION['userError'] = "Username is empty!";
+    $_SESSION['userError'] = "Full user is empty!";
     $hasError = true;
 }
 
@@ -41,12 +41,15 @@ if (empty($birthdate)) {
 }
 
 if ($hasError) {
-    $_SESSION['error'] = "idk";
     header("Location: ../../pages/create-profile.php");
     exit;
 }
 
 try {
+    // $stmt = $pdo->prepare("SELECT pid WHERE aid = ?");
+    // $stmt->execute([$_SESSION['aid']]);
+    // $pid = $stmt->fetchColumn();
+
     $file = $_FILES['pfp'];
 
     if (!empty($file['name'])) {
@@ -66,9 +69,9 @@ try {
         $targetPath = $uploadDir . $newName;
 
         if (move_uploaded_file($file['tmp_name'], $targetPath)) {
-            $stmt = $pdo->prepare("INSERT INTO profiles (aid, pfp, username, bio, gender, birthdate) VALUES (:aid, :pfp, :username, :bio, :gender, :birthdate)");
+            $stmt = $pdo->prepare("UPDATE profiles SET pfp = :pfp, username = :username, bio = :bio, gender = :gender, birthdate = :birthdate WHERE pid = :pid");
             $stmt->execute([
-                ":aid" => $_SESSION['aid'],
+                ":pid" => $_SESSION['pid'],
                 ":pfp" => $newName,
                 ":username" => $user,
                 ":bio" => $bio,
@@ -78,22 +81,17 @@ try {
         }
     }
     else {
-        $stmt = $pdo->prepare("INSERT INTO profiles (aid, username, bio, gender, birthdate) VALUES (:aid, :username, :bio, :gender, :birthdate)");
+        $stmt = $pdo->prepare("UPDATE profiles SET username = :username, bio = :bio, gender = :gender, birthdate = :birthdate WHERE pid = :pid");
         $stmt->execute([
-            ":aid" => $_SESSION['aid'],
+            ":pid" => $_SESSION['pid'],
             ":username" => $user,
             ":bio" => $bio,
             ":gender" => $gender,
             ":birthdate" => $birthdate,
         ]);
     }
-    
-    $stmt = $pdo->prepare("SELECT pid WHERE aid = ?");
-    $stmt->execute([$_SESSION['aid']]);
-    $pid = $stmt->fetchColumn();
 
-    $_SESSION['pid'] = $pid;
-    $_SESSION['pfp'] = $newName ?? 'blankPfp.jpg';
+    $_SESSION['pfp'] = $newName ?? isset($_SESSION['pfp']) ? $_SESSION['pfp'] : 'blankPfp.jpg';
     $_SESSION['username'] = $user;
     $_SESSION['bio'] = $bio;
     $_SESSION['gender'] = $gender;

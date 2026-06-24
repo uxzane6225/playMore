@@ -14,11 +14,19 @@ include('templates/navbar.php');
     </div>
 </header>
 <main class="m-5 p-5 flex flex-col gap-5">
-    <h2 class="text-2xl font-bold">Profile Settings</h2>
-    <form action="../processors/profile/edit.php" class="flex flex-col gap-2 text-lg">
+    <h2 class="text-2xl font-bold">Profile Settings <?= isset($_SESSION['error']) ? $_SESSION['error'] : ''; unset($_SESSION['error']) ?></h2>
+    <form action="../processors/profile/edit.php" method="POST" class="flex flex-col gap-2 text-lg" enctype="multipart/form-data">
+        <div class="flex flex-col gap-1">
+            <input type="file" id="pfp" name="pfp" class="p-2.5 text-white bg-red-600 rounded-xl cursor-pointer" aria-label="profile picture">
+            <?php if(isset($_SESSION['pfpError'])): ?>
+                <p class="text-end text-xs"><?= $_SESSION['pfpError']; ?></p>
+                <?php unset($_SESSION['pfpError']); ?>
+            <?php endif; ?>
+        </div>
+
         <div class="flex flex-col gap-1">
             <label for="username">Username</label>
-            <input type="text" id="username" name="username" class="p-2.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400"  value="<?= isset($_SESSION['oldUser']) ? $_SESSION['oldUser'] : $_SESSION['username'] ?>">
+            <input type="text" id="user" name="user" class="p-2.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400"  value="<?= isset($_SESSION['oldUser']) ? $_SESSION['oldUser'] : $_SESSION['username'] ?>">
             <?php if(isset($_SESSION['userError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['userError']; ?></p>
                 <?php unset($_SESSION['userError']); ?>
@@ -54,6 +62,8 @@ include('templates/navbar.php');
                 <?php unset($_SESSION['birthError']); ?>
             <?php endif; ?>
         </div>
+
+        <button type="submit" name="edit" class="py-2 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-700">Edit</button>
     </form>
 </main>
 <footer class="p-10 text-white text-center bg-red-600">

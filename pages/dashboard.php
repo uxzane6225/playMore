@@ -18,7 +18,7 @@ $totalSales = $pdo->query('SELECT COUNT(*) FROM sales')->fetchColumn();
 ?>
 <main class="p-5 lg:col-span-4 h-full w-full flex flex-col gap-5">
     <h2 class="text-4xl font-bold">Dashboard</h2>
-    <div class="p-5 h-full w-full grid grid-cols-3 justify-items-center items-center gap-5 bg-gray-200">
+    <div class="p-5 h-full w-full grid grid-cols-3 justify-items-center items-center gap-5 bg-gray-200 rounded-xl border border-4 border-red-700">
         <div class="p-2 lg:px-10 h-fit w-fit text-white text-center bg-red-600 rounded-xl">
             <h3 class="text-2xl font-bold"><?= $totalSales ?></h3>
             <p>Total Number of Sales</p>

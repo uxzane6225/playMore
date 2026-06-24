@@ -1,7 +1,7 @@
 <?php
     require_login();
 ?>
-<nav class="p-5 w-full text-white bg-red-600 rounded-b-3xl lg:flex">
+<nav class="p-5 w-full text-white bg-red-600 rounded-b-3xl shadow-lg lg:flex">
     <button id="expand" class="w-full font-bold lg:hidden">Expand</button>
     <div id="navbar" class="mt-1 w-full flex flex-col justify-between gap-2 text-xl lg:flex-row lg:gap-0 hidden lg:flex lg:text-lg">
         <a href="" class="font-bold">playMore</a>
