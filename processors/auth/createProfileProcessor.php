@@ -60,7 +60,7 @@ try {
             exit;
         }
 
-        $uploadDir = "../../storage/images/";
+        $uploadDir = "../../storage/images/pfp/";
 
         $newName = "user_" . $_SESSION['aid'] . "_" . time() . "." . $ext;
         $targetPath = $uploadDir . $newName;
