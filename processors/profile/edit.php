@@ -91,7 +91,8 @@ try {
         ]);
     }
 
-    $_SESSION['pfp'] = $newName ?? isset($_SESSION['pfp']) ? $_SESSION['pfp'] : 'blankPfp.jpg';
+    $_SESSION['pfp'] = $newName ?? $_SESSION['pfp'];
+    //$_SESSION['pfp'] = $newName ?? isset($_SESSION['pfp']) ? $_SESSION['pfp'] : 'blankPfp.jpg';
     $_SESSION['username'] = $user;
     $_SESSION['bio'] = $bio;
     $_SESSION['gender'] = $gender;
