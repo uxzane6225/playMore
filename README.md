@@ -19,5 +19,3 @@
  10. PDO Database Connectivity (check)
  11. Secure Password Storage (check)
  12. Input Validation and Output Escaping (check)
-
- (note: config/database.php is ignored, so if you're testing this, make a new one.)
