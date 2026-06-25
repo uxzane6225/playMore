@@ -51,8 +51,8 @@ try {
     $_SESSION['aid'] = $account['aid'];
     $_SESSION['fullname'] = $account['fullname'];
     $_SESSION['email'] = $account['email'];
-    //$_SESSION['phone'] = $result['phone'];
-    //$_SESSION['address'] = $result['address'];
+    $_SESSION['phone'] = $account['phone'];
+    $_SESSION['address'] = $account['address'];
     $_SESSION['role'] = $account['role'];
 
     if ($remember) {

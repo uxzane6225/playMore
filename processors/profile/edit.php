@@ -97,6 +97,8 @@ try {
     $_SESSION['bio'] = $bio;
     $_SESSION['gender'] = $gender;
     $_SESSION['birthdate'] = $birthdate;
+
+    $_SESSION['success'] = "Profile Updated Successfully!";
     
     header("Location: ../../pages/profile.php");
     exit;
