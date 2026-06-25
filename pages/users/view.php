@@ -28,18 +28,16 @@ if (!$account) {
     header("Location: ../categories.php");
     exit;
 }
-
-$_SESSION['targetAid'] = $account['aid'];
 ?>
 <main class="p-5 lg:col-span-4 h-full w-full flex flex-col gap-3">
     <header class="mt-5 mx-5 p-5 flex flex-col items-center gap-5 text-white bg-red-600 rounded-xl shadow-lg lg:flex-row lg:items-start">
         <img src="../../storage/images/pfp/<?= isset($account['pfp']) ? $account['pfp'] : "blankPfp.jpg" ?>" alt="Profile Picture" class="w-60 h-60 border border-4 border-white rounded-full">
         <div class="text-center lg:py-5 lg:text-left">
-            <h1 class="text-xl font-bold lg:text-3xl"><?= $_SESSION['username']; ?>'s Profile</h1>
+            <h1 class="text-xl font-bold lg:text-3xl"><?= $account['username']; ?>'s Profile</h1>
             <p><?= isset($account['bio']) ? $account['bio'] : "No description"; ?></p>
             <p><span class="font-bold">Gender: </span><?= isset($account['gender']) ? $account['gender'] : "None"; ?></p>
             <p><span class="font-bold">Birthday: </span><?= isset($account['birthdate']) ? $account['birthdate'] : "None"; ?></p>
-            <!-- <p><?= isset($_SESSION['pfp']) ? $_SESSION['pfp'] : "blankPfp.jpg" ?></p> -->
+            <!-- <p><?= isset($account['pfp']) ? $account['pfp'] : "blankPfp.jpg" ?></p> -->
         </div>
     </header>
     <section class="mx-5 p-5 flex flex-col gap-2 bg-gray-200 rounded-xl shadow-lg">

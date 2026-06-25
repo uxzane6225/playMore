@@ -1,6 +1,6 @@
 <?php 
 require __DIR__ . '/../../processors/auth/auth.php';
-$_SESSION['title'] = "Ediit Admin/Staff";
+$_SESSION['title'] = "Edit Admin/Staff";
 
 include '../templates/adminHead.php';
 include '../templates/adminNavbar.php';
@@ -22,7 +22,7 @@ $_SESSION['targetAid'] = $account['aid'];
 ?>
 <main class="p-5 lg:col-span-4 h-full w-full flex flex-col gap-5">
     <div class="flex gap-5 items-center">
-        <h2 class="text-4xl font-bold">Create Admin/Staff</h2>
+        <h2 class="text-4xl font-bold">Edit User</h2>
         <?php if(isset($_SESSION['success'])): ?>
             <p class="p-2 text-md text-green-700 bg-green-200 rounded-xl"><?= $_SESSION['success']; ?></p>
             <?php unset($_SESSION['success']); ?>
