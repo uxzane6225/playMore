@@ -49,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                 $stmt->execute([$brandFilter, $categoryFilter]);
             }
             else {
-                echo "what";
                 $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tc.tcid = ? AND tt.ttid = ?");
                 $stmt->execute([$brandFilter, $categoryFilter, $typeFilter]);
             }
