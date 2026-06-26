@@ -11,18 +11,18 @@ include '../templates/adminNavbar.php';
         <label for="category">Categories</label>
         <input type="text" name="category" id="category" value="<?= isset($_SESSION['oldCategory']) ? $_SESSION['oldCategory'] : ''; unset($_SESSION['oldType']);?>" class="p-1 text-black bg-gray-200 rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
         <?php if(isset($_SESSION['categoryError'])): ?>
-            <p class="text-end text-xs"><?= $_SESSION['categoryError']; ?></p>
+            <p class="text-start text-xs"><?= $_SESSION['categoryError']; ?></p>
             <?php unset($_SESSION['categoryError']); ?>
         <?php elseif(isset($_SESSION['error'])): ?>
-            <p class="text-end text-xs"><?= $_SESSION['error']; ?></p>
+            <p class="text-start text-xs"><?= $_SESSION['error']; ?></p>
             <?php unset($_SESSION['error']); ?>
         <?php elseif(isset($_SESSION['success'])): ?>
-            <p class="text-end text-xs"><?= $_SESSION['success']; ?></p>
+            <p class="text-start text-xs"><?= $_SESSION['success']; ?></p>
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
         <div>
             <button class="py-1 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Add</button>
-            <a href="../categories.php" class="py-1 px-5 w-fit bg-gray-400 text-white text-xl rounded-lg transition duration-300 hover:bg-gray-300">Cancel</a>
+            <a href="../categories.php" class="py-1 px-5 w-fit bg-gray-300 text-xl rounded-lg transition duration-300 hover:bg-gray-200">Cancel</a>
         </div>
     </form>
 </main>

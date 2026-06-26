@@ -36,8 +36,8 @@ $_SESSION['ttid'] = $type['ttid'];
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
         <div>
-            <button class="py-1 px-5 w-fit bg-yellow-400 text-white text-xl rounded-lg transition duration-300 hover:bg-yellow-500">Edit</button>
-            <a href="../types.php" class="py-1 px-5 w-fit bg-gray-400 text-white text-xl rounded-lg transition duration-300 hover:bg-gray-300">Cancel</a>
+            <button class="py-1 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Update</button>
+            <a href="../types.php" class="py-1 px-5 w-fit bg-gray-200 text-xl rounded-lg transition duration-300 hover:bg-gray-300">Cancel</a>
         </div>
     </form>
 </main>

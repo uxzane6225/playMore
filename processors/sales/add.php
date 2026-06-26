@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'staff' && $_SESSION['role'] !== 'admin')) {
-    $_SESSION['error'] = "You do not have the permission to add Sales.";
+    $_SESSION['error'] = "You do not have the permission to Add a Sale.";
     header("Location: ../../pages/sales.php");
     exit;
 }

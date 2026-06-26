@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to add a user.";
+    $_SESSION['error'] = "You do not have the permission to Create A User.";
     header("Location: ../../pages/users.php");
     exit;
 }
@@ -83,7 +83,7 @@ try {
     $result = $check->fetch();
 
     if ($result) {
-        $_SESSION['error'] = "Email already exists!";
+        $_SESSION['error'] = "Email Already Exists!";
         header("Location: ../../pages/users/add.php");
         exit;
     }
@@ -100,7 +100,7 @@ try {
         ":role" => $role
     ]);
     
-    $_SESSION['success'] = "User Added Successfully";
+    $_SESSION['success'] = "User Created Successfully";
 
     unset($_SESSION['oldName']);
     unset($_SESSION['oldEmail']);

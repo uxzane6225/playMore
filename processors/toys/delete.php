@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to delete toys.";
+    $_SESSION['error'] = "You do not have the permission to Delete a Toy.";
     header("Location: ../../pages/toys.php");
     exit;
 }
@@ -27,7 +27,7 @@ try {
     $stmt = $pdo->prepare("DELETE FROM toys WHERE tid = ?");
     $stmt->execute([$tid]);
 
-    $_SESSION['success'] = "Toy Deleted Successfully.";
+    $_SESSION['success'] = "Toy Deleted Successfully!";
 
     header("Location: ../../pages/toys.php");
     exit;

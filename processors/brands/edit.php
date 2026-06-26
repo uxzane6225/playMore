@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
     exit;
 }
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to edit brands.";
+if (!isset($_SESSION['role']) || $_SESSION['role'] == 'user') {
+    $_SESSION['error'] = "You do not have the permission to Edit a Brand.";
     header("Location: ../../pages/brands.php");
     exit;
 }
@@ -18,7 +18,7 @@ $brand = trim($_POST['brand']);
 $bid = $_SESSION['bid'] ?? 0;
 
 if (empty($brand)) {
-    $_SESSION['brandError'] = "Brand is empty!";
+    $_SESSION['brandError'] = "Brand is Empty!";
     header("Location: ../../pages/brands/edit.php?bid={$bid}");
     exit;
 }

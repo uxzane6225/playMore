@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'staff')) {
-    $_SESSION['error'] = "You do not have the permission to add a Toy.";
+    $_SESSION['error'] = "You do not have the permission to Add a Toy.";
     header("Location: ../../pages/toys.php");
     exit;
 }
@@ -37,33 +37,33 @@ $_SESSION['oldType'] = $type;
 $_SESSION['oldBrand'] = $brand;
 
 if (empty($name)) {
-    $_SESSION['nameError'] = "Full Name is empty!";
+    $_SESSION['nameError'] = "Name is empty!";
     $hasError = true;
 }
 
 if (empty($description)) {
-    $_SESSION['descriptionError'] = "description Address is empty!";
+    $_SESSION['descriptionError'] = "Description is empty!";
     $hasError = true;
 }
 
 
 if (empty($min)) {
-    $_SESSION['minError'] = "Min is empty!";
+    $_SESSION['minError'] = "Minimum age is empty!";
     $hasError = true;
 }
 
 if (empty($max)) {
-    $_SESSION['maxError'] = "Max is empty!";
+    $_SESSION['maxError'] = "Maximum age is empty!";
     $hasError = true;
 }
 
 if (empty($price)) {
-    $_SESSION['priceError'] = "price Address is empty!";
+    $_SESSION['priceError'] = "Price is empty!";
     $hasError = true;
 }
 
 if (empty($stock)) {
-    $_SESSION['stockError'] = "stock # is empty!";
+    $_SESSION['stockError'] = "Stock amount is empty!";
     $hasError = true;
 }
 
@@ -83,7 +83,6 @@ if (empty($brand)) {
 }
 
 if ($hasError) {
-    $_SESSION['error'] = "Input error!";
     header("Location: ../../pages/toys/add.php");
     exit;
 }
@@ -154,7 +153,7 @@ try {
 
     
     
-    $_SESSION['success'] = "Toy Added Successfully";
+    $_SESSION['success'] = "Toy Added Successfully!";
 
     unset($_SESSION['oldName']);
     unset($_SESSION['oldDescription']);

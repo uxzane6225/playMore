@@ -29,8 +29,8 @@ if (!$account) {
     exit;
 }
 ?>
-<main class="p-5 lg:col-span-4 h-full w-full flex flex-col gap-3">
-    <header class="mt-5 mx-5 p-5 flex flex-col items-center gap-5 text-white bg-red-600 rounded-xl shadow-lg lg:flex-row lg:items-start">
+<main class="p-5 px-10 pt-10 lg:col-span-4 h-full w-full flex flex-col gap-3">
+    <header class="p-5 flex flex-col items-center gap-5 text-white bg-red-600 rounded-xl shadow-lg lg:flex-row lg:items-start">
         <img src="../../storage/images/pfp/<?= isset($account['pfp']) ? $account['pfp'] : "blankPfp.jpg" ?>" alt="Profile Picture" class="w-60 h-60 border border-4 border-white rounded-full">
         <div class="text-center lg:py-5 lg:text-left">
             <h1 class="text-xl font-bold lg:text-3xl"><?= $account['username']; ?>'s Profile</h1>
@@ -40,7 +40,7 @@ if (!$account) {
             <!-- <p><?= isset($account['pfp']) ? $account['pfp'] : "blankPfp.jpg" ?></p> -->
         </div>
     </header>
-    <section class="mx-5 p-5 flex flex-col gap-2 bg-gray-200 rounded-xl shadow-lg">
+    <section class="p-5 flex flex-col gap-2 bg-gray-200 rounded-xl shadow-lg">
         <h2 class="p-3 text-2xl font-bold ">User Information</h2>
         <div class="lg:pl-5 flex flex-col lg:flex-row gap-10">
             <div class="p-5 bg-red-600 text-white rounded-xl">
@@ -62,5 +62,6 @@ if (!$account) {
             </div>
         </div>
     </section>
+    <a href="../users.php" class="w-fit py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Back</a>
 </main>
 <?php include '../templates/foot.php'; ?>

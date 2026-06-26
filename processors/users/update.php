@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
     header("Location: ../../pages/profile.php?id=" . $_SESSION['aid']);
     exit;
 }
+
 $aid = $_SESSION['aid'];
 $name = trim($_POST['name']);
 $email = trim($_POST['email']);
@@ -45,8 +46,8 @@ if (!empty($password)) {
 }
 
 if ($hasError) {
-    //header("Location: ../../pages/profile.php?id={$aid}");
-    //exit;
+    header("Location: ../../pages/profile.php?id={$aid}");
+    exit;
 }
 
 try {
@@ -78,7 +79,6 @@ try {
             "aid" => $aid
         ]);
     }
-    
     
     $_SESSION['updateSuccess'] = "User Updated Successfully";
 

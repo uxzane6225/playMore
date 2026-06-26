@@ -97,8 +97,8 @@ $_SESSION['targetAid'] = $account['aid'];
             <?php endif; ?>
         </div>
         <div>
-            <button class="py-1 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Edit</button>
-            <a href="../users.php" class="py-1 px-5 w-fit bg-gray-400 text-white text-xl rounded-lg transition duration-300 hover:bg-gray-300">Cancel</a>
+            <button class="py-1 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Update</button>
+            <a href="../users.php" class="py-1 px-5 w-fit bg-gray-300 text-xl rounded-lg transition duration-300 hover:bg-gray-200">Cancel</a>
         </div>
     </form>
 </main>

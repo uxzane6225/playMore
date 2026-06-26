@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to delete toy types.";
+    $_SESSION['error'] = "You do not have the permission to Delete a Toy Type.";
     header("Location: ../../pages/types.php");
     exit;
 }
@@ -18,7 +18,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
 $ttid = $_POST['delete'] ?? 0;
 
 if (!is_numeric($ttid) || $ttid <= 0) {
-    $_SESSION['error'] = "Invalid brand selected.";
+    $_SESSION['error'] = "Invalid toy type selected.";
     header("Location: ../../pages/types.php");
     exit;
 }

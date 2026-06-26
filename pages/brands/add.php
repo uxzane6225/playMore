@@ -22,7 +22,7 @@ include '../templates/adminNavbar.php';
         <?php endif; ?>
         <div>
             <button class="py-1 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Add</button>
-            <a href="../brands.php" class="py-1 px-5 w-fit bg-gray-400 text-white text-xl rounded-lg transition duration-300 hover:bg-gray-300">Cancel</a>
+            <a href="../brands.php" class="py-1 px-5 w-fit bg-gray-300 text-xl rounded-lg transition duration-300 hover:bg-gray-200">Cancel</a>
         </div>
     </form>
 </main>

@@ -125,9 +125,9 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                         <form method="POST "class="w-full flex flex-col gap-3">
                             <button type="submit" name="buy" value="<?= $toy['tid'] ?>" class="w-full py-2 px-5 bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Buy</button>
                             <div class="w-full hidden lg:flex justify-center gap-2 text-xs">
-                                <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['brand'] ?></p>
-                                <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['category'] ?></p>
-                                <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['type'] ?></p>
+                                <p class="py-1 px-2 text-white bg-red-600 rounded-lg"><?= $toy['brand'] ?></p>
+                                <p class="py-1 px-2 text-white bg-red-600 rounded-lg"><?= $toy['category'] ?></p>
+                                <p class="py-1 px-2 text-white bg-red-600 rounded-lg"><?= $toy['type'] ?></p>
                             </div>
                         </form>
                     </div>

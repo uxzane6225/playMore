@@ -22,7 +22,8 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
     </div>
-    <div class="h-full w-full text-sm bg-gray-200 overflow-scroll border border-b-4 rounded-t-2xl border-b-red-600">
+    <a href="sales/add.php" class="w-fit py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Add Sales</a>
+    <div class="h-full w-full text-sm bg-gray-200 overflow-scroll lg:overflow-hidden border border-b-4 rounded-t-2xl border-b-red-600">
         <table class="w-full">
             <thead class="text-white bg-red-700">
                 <th class="p-1 lg:p-3">ID</th>
@@ -54,7 +55,6 @@ $sales = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     </div>
-    <a href="sales/add.php" class="w-fit py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Add Sales</a>
     <dialog id="modal" class="p-5 flex flex-col gap-5 text-center rounded-lg hidden">
         <h3 class="text-xl font-bold">Delete this Sale?</h3>
         <div class="flex gap-5">

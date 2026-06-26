@@ -22,6 +22,7 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
     </div>
+    <a href="users/add.php" class="w-fit py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Create Admin/Employee Account</a>
     <div class="h-full w-full text-sm bg-gray-200 overflow-scroll lg:overflow-hidden border border-b-4 rounded-t-2xl border-b-red-600">
         <table class="w-full overflow-scroll">
             <thead class="text-white bg-red-700">
@@ -69,7 +70,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tbody>
         </table>
     </div>
-    <a href="users/add.php" class="w-fit py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Add Admin/Employee</a>
     <dialog id="modal" class="p-5 flex flex-col gap-5 text-center rounded-lg hidden">
         <h3 class="text-xl font-bold">Delete this User?</h3>
         <div class="flex gap-5">

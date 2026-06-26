@@ -77,13 +77,13 @@ include '../templates/adminNavbar.php';
                 <option value="staff">Staff</option>
             </select>
             <?php if(isset($_SESSION['addressError'])): ?>
-                <p class="text-end text-xs"><?= $_SESSION['addressError']; ?></p>
+                <p class="text-start text-xs"><?= $_SESSION['addressError']; ?></p>
                 <?php unset($_SESSION['addressError']); ?>
             <?php endif; ?>
         </div>
         <div>
-            <button class="py-1 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Add</button>
-            <a href="../users.php" class="py-1 px-5 w-fit bg-gray-400 text-white text-xl rounded-lg transition duration-300 hover:bg-gray-300">Cancel</a>
+            <button class="py-1 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Create</button>
+            <a href="../users.php" class="py-1 px-5 w-fit bg-gray-300 text-xl rounded-lg transition duration-300 hover:bg-gray-200">Cancel</a>
         </div>
     </form>
 </main>

@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to delete categories.";
+    $_SESSION['error'] = "You do not have the permission to Delete a Category.";
     header("Location: ../../pages/categories.php");
     exit;
 }

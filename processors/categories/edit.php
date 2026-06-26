@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to edit categories.";
+    $_SESSION['error'] = "You do not have the permission to Edit a Category.";
     header("Location: ../../pages/categories.php");
     exit;
 }
@@ -18,7 +18,7 @@ $category = trim($_POST['category']);
 $tcid = $_SESSION['tcid'] ?? 0;
 
 if (empty($category)) {
-    $_SESSION['categoryError'] = "Category is empty!";
+    $_SESSION['categoryError'] = "Category is Empty!";
     header("Location: ../../pages/categories/edit.php?tcid={$tcid}");
     exit;
 }

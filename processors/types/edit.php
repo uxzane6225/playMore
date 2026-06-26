@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to edit toy types.";
+    $_SESSION['error'] = "You do not have the permission to Edit a Toy Type.";
     header("Location: ../../pages/types.php");
     exit;
 }

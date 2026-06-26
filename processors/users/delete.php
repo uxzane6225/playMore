@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
 }
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to delete any User.";
+    $_SESSION['error'] = "You do not have the permission to Delete a User.";
     header("Location: ../../pages/users.php");
     exit;
 }

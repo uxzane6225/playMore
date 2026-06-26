@@ -20,7 +20,7 @@ include('templates/head.php');
 <main  class="h-full flex flex-col md:justify-center md:items-center md:bg-red-600">
     <form action="../processors/auth/createProfileProcessor.php" method="POST" enctype="multipart/form-data" class="h-full w-full flex flex-col justify-between md:h-fit md:w-fit md:bg-white md:rounded-xl md:shadow-2xl">
         <div class="h-1/3 flex flex-col items-center justify-center gap-3 md:p-5">
-            <img src="../storage/images/blankPfp.jpg" alt="Profile Picture" class="w-40 h-40 bg-gray-200 border border-red-600 rounded-full">
+            <img src="../storage/images/pfp/blankPfp.jpg" alt="Profile Picture" class="w-40 h-40 bg-gray-200 border border-red-600 rounded-full">
             <input type="file" id="pfp" name="pfp" class="w-fit text-white bg-red-600 rounded-xl" aria-label="profile picture">
             <?php if(isset($_SESSION['pfpError'])): ?>
                 <p class="text-end text-xs"><?= $_SESSION['pfpError']; ?></p>

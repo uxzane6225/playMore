@@ -9,8 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
     exit;
 }
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    $_SESSION['error'] = "You do not have the permission to add categories.";
+if (!isset($_SESSION['role']) || $_SESSION['role'] === 'user') {
+    $_SESSION['error'] = "You do not have the permission to Add a Category.";
     header("Location: ../../pages/categories.php");
     exit;
 }
@@ -19,7 +19,7 @@ $category = trim($_POST['category']);
 $_SESSION['oldCategory'] = $category;
 
 if (empty($category)) {
-    $_SESSION['categoryError'] = "Category is empty!";
+    $_SESSION['categoryError'] = "Category is Empty!";
     header("Location: ../../pages/categories/add.php");
     exit;
 }

@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== "POST") {
     exit;
 }
 
-if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['role']) || $_SESSION['role'] === 'user') {
     $_SESSION['error'] = "You do not have the permission to add brands.";
     header("Location: ../../pages/brands.php");
     exit;
@@ -19,7 +19,7 @@ $brand = trim($_POST['brand']);
 $_SESSION['oldBrand'] = $brand;
 
 if (empty($brand)) {
-    $_SESSION['brandError'] = "Brand is empty!";
+    $_SESSION['brandError'] = "Brand is Empty!";
     header("Location: ../../pages/brands/add.php");
     exit;
 }

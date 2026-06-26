@@ -120,13 +120,13 @@ $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </select>
             <?php if(isset($_SESSION['typeError'])): ?>
-                <p class="text-end text-xs"><?= $_SESSION['typeError']; ?></p>
+                <p class="text-start text-xs"><?= $_SESSION['typeError']; ?></p>
                 <?php unset($_SESSION['typeError']); ?>
             <?php endif; ?>
         </div>
         <div>
             <button class="py-1 px-5 w-fit bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Add</button>
-            <a href="../toys.php" class="py-1 px-5 w-fit bg-gray-400 text-white text-xl rounded-lg transition duration-300 hover:bg-gray-300">Cancel</a>
+            <a href="../toys.php" class="py-1 px-5 w-fit bg-gray-200 text-xl rounded-lg transition duration-300 hover:bg-gray-300">Cancel</a>
         </div>
     </form>
 </main>

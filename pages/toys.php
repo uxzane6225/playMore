@@ -22,6 +22,12 @@ $toys = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php unset($_SESSION['success']); ?>
         <?php endif; ?>
     </div>
+    <div class="grid grid-cols-2 gap-2 text-center lg:flex">
+        <a href="toys/add.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Add Toy</a>
+        <a href="brands.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Brands</a>
+        <a href="categories.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Categories</a>
+        <a href="types.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Types</a>
+    </div>
     <div class="h-full w-full text-sm bg-gray-200 overflow-auto border border-b-4 rounded-t-2xl border-b-red-600">
         <table class="w-full">
             <thead class="text-white bg-red-700">
@@ -69,12 +75,6 @@ $toys = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <?php endforeach; ?>
             </tbody>
         </table>
-    </div>
-    <div class="grid grid-cols-2 gap-2 text-center lg:flex">
-        <a href="toys/add.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Add Toy</a>
-        <a href="brands.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Brands</a>
-        <a href="categories.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Categories</a>
-        <a href="types.php" class="py-2 px-5 text-white bg-red-600 rounded-xl transition duration-300 hover:bg-red-500">Types</a>
     </div>
     <dialog id="modal" class="p-5 flex flex-col gap-5 text-center rounded-lg hidden">
         <h3 class="text-xl font-bold">Delete this Toy?</h3>
