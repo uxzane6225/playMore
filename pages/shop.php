@@ -7,7 +7,7 @@ $brands = $pdo->query("SELECT * FROM brands")->fetchAll(PDO::FETCH_ASSOC);
 $categories = $pdo->query("SELECT * FROM toycategories")->fetchAll(PDO::FETCH_ASSOC);
 $types = $pdo->query("SELECT * FROM toytypes")->fetchAll(PDO::FETCH_ASSOC);
 
-$toys = $pdo->query("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid")->fetchAll(PDO::FETCH_ASSOC);
+$toys = $pdo->query("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid ORDER BY t.createDateTime DESC")->fetchAll(PDO::FETCH_ASSOC);
 
 include 'templates/head.php';
 include 'templates/navbar.php';
@@ -25,37 +25,37 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                 header("Location: " . $_SERVER['PHP_SELF']);
             }
             else {
-                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE name LIKE ?");
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE name LIKE ? ORDER BY t.createDateTime DESC");
                 $stmt->execute([$search]);    
             }
         }
         else {
             if (empty($brandFilter) && empty($categoryFilter)) {
-                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tt.ttid = ? AND name LIKE ?");
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tt.ttid = ? AND name LIKE ? ORDER BY t.createDateTime DESC");
                 $stmt->execute([$typeFilter, $search]);    
             }
             else if (empty($brandFilter) && empty($typeFilter)) {
-                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tc.tcid = ? AND name LIKE ?");
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tc.tcid = ? AND name LIKE ? ORDER BY t.createDateTime DESC");
                 $stmt->execute([$categoryFilter, $search]);    
             }
             else if (empty($categoryFilter) && empty($typeFilter)) {
-                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND name LIKE ?");
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND name LIKE ? ORDER BY t.createDateTime DESC");
                 $stmt->execute([$brandFilter, $search]);    
             }
             else if (empty($brandFilter)) {
-                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tc.tcid = ? AND tt.ttid = ? AND name LIKE ?");
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tc.tcid = ? AND tt.ttid = ? AND name LIKE ? ORDER BY t.createDateTime DESC");
                 $stmt->execute([$categoryFilter, $typeFilter, $search]);    
             }
             else if (empty($categoryFilter)) {
-                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tt.ttid = ? AND name LIKE ?");
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tt.ttid = ? AND name LIKE ? ORDER BY t.createDateTime DESC");
                 $stmt->execute([$brandFilter, $typeFilter, $search]);
             }
             else if (empty($typeFilter)) {
-                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tc.tcid = ? AND name LIKE ?");
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tc.tcid = ? AND name LIKE ? ORDER BY t.createDateTime DESC");
                 $stmt->execute([$brandFilter, $categoryFilter, $search]);
             }
             else {
-                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tc.tcid = ? AND tt.ttid = ? AND name LIKE ?");
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tc.tcid = ? AND tt.ttid = ? AND name LIKE ? ORDER BY t.createDateTime DESC");
                 $stmt->execute([$brandFilter, $categoryFilter, $typeFilter, $search]);
             }
         }
@@ -79,7 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         </header>
         <div>
             <label for="search">Search</label>
-            <input type="text" id="search" name="search" class="p-2 w-full text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+            <input type="text" id="search" name="search" class="p-2 w-full text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400" placeholder="Search">
         </div>
         <div>
             <label for="brand"><h2>Brands</h2></label>
@@ -122,14 +122,14 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                             <h3 class="text-lg font-bold"><?= $toy['name'] ?></h3>
                             <p class="text-yellow-700">$<?= $toy['price'] ?></p>
                         </div>
-                        <form method="POST "class="w-full flex flex-col gap-3">
-                            <button type="submit" name="buy" value="<?= $toy['tid'] ?>" class="w-full py-2 px-5 bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Buy</button>
+                        <div class="w-full flex flex-col gap-3">
+                            <a href="buy.php?tid=<?= $toy['tid'] ?>" class="w-full py-2 px-5 bg-red-600 text-center text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Buy</a>
                             <div class="w-full hidden lg:flex justify-center gap-2 text-xs">
                                 <p class="py-1 px-2 text-white bg-red-600 rounded-lg"><?= $toy['brand'] ?></p>
                                 <p class="py-1 px-2 text-white bg-red-600 rounded-lg"><?= $toy['category'] ?></p>
                                 <p class="py-1 px-2 text-white bg-red-600 rounded-lg"><?= $toy['type'] ?></p>
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </article>  
             <?php endforeach; ?>
