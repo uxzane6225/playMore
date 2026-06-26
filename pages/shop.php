@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 }
 
 ?>
-<main class="w-full lg:h-full flex flex-col lg:grid grid-cols-5 gap-6">
+<main class="w-full <?= count($toys) === 0 ? "lg:h-full" :  ""; ?> flex flex-col lg:grid grid-cols-5 gap-6">
     <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="GET" class="m-5 p-5 h-fit lg:w-full flex flex-col gap-5 text-white bg-red-600 rounded-lg shadow-xl">
         <header>
             <h2 class="text-2xl font-bold">Filters</h2>
@@ -50,30 +50,32 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
         </div>
         <button class="py-2 px-5 bg-white text-black text-xl rounded-lg transition duration-300 hover:bg-gray-100">Apply</button>
     </form>
-    <section class="p-10 flex flex-col items-center col-span-4">
-        <?php foreach($toys as $toy): ?>
-            <article class="p-5 lg:w-full flex flex-col lg:flex-row gap-2 bg-white rounded-xl shadow-lg">
-                <img src="../storage/images/toys/<?= $toy['imagepath'] ?>" alt="Toy Picture" class="h-72 w-72 border border-2 border-red-600 rounded-xl ">
-                <div class="h-full flex flex-col gap-2 lg:justify-between">
-                    <div>
-                        <h3 class="text-lg font-bold"><?= $toy['name'] ?></h3>
-                        <p class="hidden lg:block text-sm text-gray-500"><?= $toy['description'] ?></p>
-                        <p class="text-yellow-500">$<?= $toy['price'] ?></p>
+    <section class="p-10 flex flex-col h-fit lg:grid grid-cols-3 col-span-4 gap-5 lg:gap-10">
+        <?php if(count($toys) !== 0 ): ?>
+            <?php foreach($toys as $toy): ?>
+                <article class="p-5 flex flex-col gap-2 bg-white rounded-xl shadow-lg">
+                    <img src="../storage/images/toys/<?= $toy['imagepath'] ?>" alt="Toy Picture" class="self-center h-72 w-72 border border-2 border-red-600 rounded-xl object-cover">
+                    <div class="h-full flex flex-col gap-2 lg:justify-between">
+                        <div>
+                            <h3 class="text-lg font-bold"><?= $toy['name'] ?></h3>
+                            <p class="text-yellow-500">$<?= $toy['price'] ?></p>
+                        </div>
+                        <form method="POST "class="w-full flex flex-col gap-3">
+                            <button type="submit" name="buy" value="<?= $toy['tid'] ?>" class="w-full py-2 px-5 bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Buy</button>
+                            <div class="w-full hidden lg:flex justify-center gap-2 text-xs">
+                                <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['brand'] ?></p>
+                                <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['category'] ?></p>
+                                <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['type'] ?></p>
+                            </div>
+                        </form>
                     </div>
-                    <form method="POST "class="w-full lg:w-fit">
-                        <button type="submit" name="buy" value="<?= $toy['tid'] ?>" class="w-full lg:w-fit py-2 px-5 bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Buy</button>
-                    </form>
-                    <div class="hidden lg:flex gap-2 text-xs">
-                        <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['brand'] ?></p>
-                        <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['category'] ?></p>
-                        <p class="p-1 text-white bg-red-600 rounded-lg"><?= $toy['type'] ?></p>
-                    </div>
-                </div>
-            </article>  
-        <?php endforeach; ?>
+                </article>  
+            <?php endforeach; ?>
+        <?php else: ?>
+            <h1 class="text-2xl font-bold">Under Construction!</h1>
+            <p>This part of the website is still unfinished
+        <?php endif; ?>
     </section>
-    <!-- <h1 class="text-2xl font-bold">Under Construction!</h1>
-    <p>This part of the website is still unfinished.</p> -->
 </main>
 <footer class="p-5 w-full bg-red-600 text-white">
     <p><span class="font-bold">&copy;</span> Uriel Laurence M. Mendoza | 2nd Year - 3rd Trimester | ITWS Finals Project</p>
