@@ -38,7 +38,7 @@ $_SESSION['targetedAid'] = $_SESSION['aid'];
             </div>
 
             <div class="flex flex-col gap-1">
-                <label for="username">Username</label>
+                <label for="user">Username</label>
                 <input type="text" id="user" name="user" class="p-2.5 text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400"  value="<?= isset($_SESSION['oldUser']) ? $_SESSION['oldUser'] : $_SESSION['username'] ?>">
                 <?php if(isset($_SESSION['userError'])): ?>
                     <p class="text-end text-xs"><?= $_SESSION['userError']; ?></p>

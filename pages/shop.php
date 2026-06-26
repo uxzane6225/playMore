@@ -14,7 +14,56 @@ include 'templates/navbar.php';
 
 if ($_SERVER['REQUEST_METHOD'] === "GET") {
     if (isset($_GET['apply'])) {
+        $brandFilter = $_GET['brand'];
+        $categoryFilter = $_GET['category'];
+        $typeFilter = $_GET['type'];
 
+
+
+        if (empty($brandFilter) && empty($categoryFilter) && empty($typeFilter)) {
+            header("Location: " . $_SERVER['PHP_SELF']);
+        }
+        else {
+            if (empty($brandFilter) && empty($categoryFilter)) {
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tt.ttid = ?");
+                $stmt->execute([$typeFilter]);    
+            }
+            else if (empty($brandFilter) && empty($typeFilter)) {
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tc.tcid = ?");
+                $stmt->execute([$categoryFilter]);    
+            }
+            else if (empty($categoryFilter) && empty($typeFilter)) {
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ?");
+                $stmt->execute([$brandFilter]);    
+            }
+            else if (empty($brandFilter)) {
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE tc.tcid = ? AND tt.ttid = ?");
+                $stmt->execute([$categoryFilter, $typeFilter]);    
+            }
+            else if (empty($categoryFilter)) {
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tt.ttid = ?");
+                $stmt->execute([$brandFilter, $typeFilter]);
+            }
+            else if (empty($typeFilter)) {
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tc.tcid = ?");
+                $stmt->execute([$brandFilter, $categoryFilter]);
+            }
+            else {
+                echo "what";
+                $stmt = $pdo->prepare("SELECT * FROM toys t INNER JOIN brands b ON b.bid = t.bid INNER JOIN toycategories tc ON tc.tcid = t.tcid INNER JOIN toytypes tt ON tt.ttid = t.ttid WHERE b.bid = ? AND tc.tcid = ? AND tt.ttid = ?");
+                $stmt->execute([$brandFilter, $categoryFilter, $typeFilter]);
+            }
+        }
+        $toys = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    if (isset($_GET['clear'])) {
+        unset($_GET['apply']);
+        unset($_GET['brand']);
+        unset($_GET['category']);
+        unset($_GET['type']);
+
+        header("Location: " . $_SERVER['PHP_SELF']);
     }
 }
 
@@ -22,43 +71,47 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
 <main class="w-full <?= count($toys) === 0 ? "lg:h-full" :  ""; ?> flex flex-col lg:grid grid-cols-5 gap-6">
     <form action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" method="GET" class="m-5 p-5 h-fit lg:w-full flex flex-col gap-5 text-white bg-red-600 rounded-lg shadow-xl">
         <header>
-            <h2 class="text-2xl font-bold">Filters</h2>
+            <h1 class="text-2xl font-bold">Filters</h1>
         </header>
         <div>
-            <label for="brand"><h3>Brands</h3></label>
+            <label for="brand"><h2>Brands</h2></label>
             <select name="brand" id="brand" class="p-2 w-full text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+                <option value="">Select</option>
                 <?php foreach($brands as $brand): ?>
                     <option value="<?= $brand['bid'] ?>"><?= $brand['brand'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
         <div>
-            <label for="category"><h3>Category</h3></label>
+            <label for="category"><h2>Category</h2></label>
             <select name="category" id="category" class="p-2 w-full text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+                <option value="">Select</option>
                 <?php foreach($categories as $category): ?>
                     <option value="<?= $category['tcid'] ?>"><?= $category['category'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
         <div>
-            <label for="type"><h3>Type</h3></label>
+            <label for="type"><h2>Type</h2></label>
             <select name="type" id="type" class="p-2 w-full text-black rounded-lg border outline-none lg:border-gray-400 lg:focus:outline-red-400">
+                <option value="">Select</option>
                 <?php foreach($types as $type): ?>
                     <option value="<?= $type['ttid'] ?>"><?= $type['type'] ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <button class="py-2 px-5 bg-white text-black text-xl rounded-lg transition duration-300 hover:bg-gray-100">Apply</button>
+        <button name="apply" class="py-2 px-5 bg-white text-black text-xl rounded-lg transition duration-300 hover:bg-gray-100">Apply</button>
+        <button name="clear" class="py-2 px-5 bg-white text-black text-xl rounded-lg transition duration-300 hover:bg-gray-100">Clear</button>
     </form>
     <section class="p-10 flex flex-col h-fit lg:grid grid-cols-3 col-span-4 gap-5 lg:gap-10">
         <?php if(count($toys) !== 0 ): ?>
             <?php foreach($toys as $toy): ?>
                 <article class="p-5 flex flex-col gap-2 bg-white rounded-xl shadow-lg">
-                    <img src="../storage/images/toys/<?= $toy['imagepath'] ?>" alt="Toy Picture" class="self-center h-72 w-72 border border-2 border-red-600 rounded-xl object-cover">
+                    <img src="../storage/images/toys/<?= $toy['imagepath'] ?>" alt="Toy Picture <?= $toy['tid'] ?>" class="self-center h-72 w-72 border border-2 border-red-600 rounded-xl object-cover">
                     <div class="h-full flex flex-col gap-2 lg:justify-between">
                         <div>
                             <h3 class="text-lg font-bold"><?= $toy['name'] ?></h3>
-                            <p class="text-yellow-500">$<?= $toy['price'] ?></p>
+                            <p class="text-yellow-700">$<?= $toy['price'] ?></p>
                         </div>
                         <form method="POST "class="w-full flex flex-col gap-3">
                             <button type="submit" name="buy" value="<?= $toy['tid'] ?>" class="w-full py-2 px-5 bg-red-600 text-white text-xl rounded-lg transition duration-300 hover:bg-red-500">Buy</button>
@@ -72,8 +125,8 @@ if ($_SERVER['REQUEST_METHOD'] === "GET") {
                 </article>  
             <?php endforeach; ?>
         <?php else: ?>
-            <h1 class="text-2xl font-bold">Under Construction!</h1>
-            <p>This part of the website is still unfinished
+            <h1 class="text-2xl font-bold">Nothing!</h1>
+            <p>It seems like we are experiencing a whole load of nothing!</p>
         <?php endif; ?>
     </section>
 </main>
