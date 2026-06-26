@@ -16,7 +16,6 @@ include 'templates/head.php';
         </div>
         <img src="../resources/images/header.jpg" alt="Header Toy" class="w-96 h-96 hidden rounded-lg transition duration-300 shadow-xl hover:scale-110 lg:block">
     </div>
-    
 </header>
 <main class="py-10 w-full flex flex-col items-center gap-10">
     <section class="w-full flex flex-col justify-center items-center gap-10 lg:w-4/6 lg:flex-row">
