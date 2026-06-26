@@ -6,11 +6,11 @@ $_SESSION['title'] = "Contact";
 include 'templates/head.php';
 include 'templates/navbar.php';
 ?>
-<main class="m-10 flex flex-col items-center justify-center gap-5 lg:items-start lg:justify-start">
+<main class="m-10 h-full flex flex-col items-center justify-center gap-5 lg:items-start lg:justify-start">
     <header>
         <h1 class="text-2xl lg:text-5xl font-bold lg:hidden">Contact</h1>
     </header>
-    <div class="w-full flex items-center justify-evenly">
+    <div class="w-full h-full flex items-center justify-evenly">
         <form class="w-full lg:w-1/2 flex flex-col gap-5 rounded-lg lg:bg-red-600 lg:p-5 lg:text-white">
             <div class="flex flex-col gap-2">
                 <div class="flex flex-col gap-1">
